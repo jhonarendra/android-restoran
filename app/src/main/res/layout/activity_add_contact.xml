@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddContactActivity"
+    android:orientation="vertical"
+    android:padding="10dp">
+    <ImageView
+        android:layout_marginTop="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:src="@drawable/logo"
+        android:adjustViewBounds="true"
+        android:layout_gravity="center_horizontal"/>
+
+    <EditText
+        android:id="@+id/et_contact_name"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Name"
+        android:inputType="text"
+        android:background="@drawable/bg_et"
+        android:padding="10dp"/>
+    <EditText
+        android:inputType="number"
+        android:id="@+id/et_contact_number"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_et"
+        android:hint="Number"
+        android:padding="10dp"/>
+    <Button
+        android:id="@+id/btn_add"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_btn"
+        android:text="Add"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"/>
+
+</LinearLayout>

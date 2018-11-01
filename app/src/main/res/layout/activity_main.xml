@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:gravity="center_horizontal">
+    <TextView
+        android:id="@+id/txt_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Halo orang asing"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:background="@drawable/bg_et"
+            android:text="Menu1"/>
+        <TextView
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:background="@drawable/bg_et"
+            android:layout_marginLeft="30dp"
+            android:text="Menu2"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="30dp">
+        <TextView
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:background="@drawable/bg_et"
+            android:text="Menu3"/>
+        <TextView
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:background="@drawable/bg_et"
+            android:layout_marginLeft="30dp"
+            android:text="Menu4"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_marginTop="30dp"
+        android:id="@+id/txt_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login"/>
+    <TextView
+        android:layout_marginTop="20dp"
+        android:id="@+id/txt_logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Logout"/>
+    <!--<Button-->
+        <!--android:id="@+id/btn_login"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@drawable/bg_btn"-->
+        <!--android:text="LOGIN"-->
+        <!--android:textStyle="bold"-->
+        <!--android:textColor="@android:color/white"/>-->
+</LinearLayout>
