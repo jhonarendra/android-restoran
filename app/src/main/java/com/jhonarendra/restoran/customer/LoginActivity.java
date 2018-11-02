@@ -62,6 +62,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                     Intent intent=new Intent(getApplicationContext(),MainActivity.class);
                     startActivity(intent);
+                    finish();
                 } else {
                     Toast.makeText(LoginActivity.this, "Login Gagal", Toast.LENGTH_SHORT).show();
                 }

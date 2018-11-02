@@ -5,20 +5,37 @@ package com.jhonarendra.restoran.customer.api;
  */
 
 public class Result {
-    String id_mhs;
-    String nama_mhs;
-    String nim_mhs;
+    String id_hidangan;
+    String nama_hidangan;
+    String deskripsi_hidangan;
+    String harga_hidangan;
 
-    public String getNIM() {
-        return nim_mhs;
+    public String getId_hidangan() {
+        return id_hidangan;
     }
 
-    public String getNamaMhs() {
-        return nama_mhs;
+    public String getNama_hidangan() {
+        return nama_hidangan;
     }
 
-    public String getIDMhs() {
-        return id_mhs;
+    public String getHarga_hidangan() {
+        return harga_hidangan;
     }
+
+    public String getDeskripsi_hidangan() {
+        return deskripsi_hidangan;
+    }
+
+    //    public String getNIM() {
+//        return nim_mhs;
+//    }
+//
+//    public String getNamaMhs() {
+//        return nama_mhs;
+//    }
+//
+//    public String getIDMhs() {
+//        return id_mhs;
+//    }
 
 }

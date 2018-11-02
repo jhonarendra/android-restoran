@@ -13,19 +13,7 @@
 
         <TableRow>
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@android:color/black"
-                android:text="id_mhs" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@android:color/black"
-                android:text=" : " />
-
-            <TextView
-                android:id="@+id/textIDMhs"
+                android:id="@+id/tv_nama_hidangan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"/>
@@ -33,19 +21,7 @@
 
         <TableRow>
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@android:color/black"
-                android:text="nama_mhs" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@android:color/black"
-                android:text=" : " />
-
-            <TextView
-                android:id="@+id/textNamaMhs"
+                android:id="@+id/tv_deskripsi_hidangan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"/>
@@ -54,19 +30,7 @@
 
         <TableRow>
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@android:color/black"
-                android:text="nim_mhs" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@android:color/black"
-                android:text=" : " />
-
-            <TextView
-                android:id="@+id/textNIMMhs"
+                android:id="@+id/tv_harga_hidangan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"/>

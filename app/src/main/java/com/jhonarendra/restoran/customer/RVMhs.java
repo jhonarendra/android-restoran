@@ -38,9 +38,9 @@ public class RVMhs extends RecyclerView.Adapter<RVMhs.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Result result = results.get(position);
-        holder.textViewNIMMhs.setText(result.getNIM());
-        holder.textViewNamaMhs.setText(result.getNamaMhs());
-        holder.textViewIDMhs.setText(result.getIDMhs());
+        holder.textViewNama.setText(result.getNama_hidangan());
+        holder.textViewDeskripsi.setText(result.getDeskripsi_hidangan());
+        holder.textViewHarga.setText(result.getHarga_hidangan());
     }
 
     @Override
@@ -50,9 +50,9 @@ public class RVMhs extends RecyclerView.Adapter<RVMhs.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.textNIMMhs) TextView textViewNIMMhs;
-        @BindView(R.id.textNamaMhs) TextView textViewNamaMhs;
-        @BindView(R.id.textIDMhs) TextView textViewIDMhs;
+        @BindView(R.id.tv_nama_hidangan) TextView textViewNama;
+        @BindView(R.id.tv_deskripsi_hidangan) TextView textViewDeskripsi;
+        @BindView(R.id.tv_harga_hidangan) TextView textViewHarga;
 
         public ViewHolder(View itemView) {
             super(itemView);
