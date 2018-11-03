@@ -28,6 +28,7 @@
         android:inputType="text"
         android:background="@drawable/bg_et"
         android:paddingTop="10dp"
+        android:textSize="14dp"
         android:paddingBottom="10dp"
         android:paddingLeft="20dp"/>
     <EditText
@@ -41,18 +42,20 @@
         android:textColor="@color/colorPrimaryDark"
         android:textColorHint="@color/colorPrimaryDark"
         android:paddingTop="10dp"
+        android:textSize="14dp"
         android:paddingBottom="10dp"
         android:paddingLeft="20dp"/>
-    <Button
-        android:shadowColor="@android:color/transparent"
-        android:id="@+id/btn_login"
-        android:layout_marginTop="10dp"
+    <TextView
+        android:id="@+id/tv_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_btn"
-        android:text="LOGIN"
         android:textStyle="bold"
-        android:textColor="@android:color/white"/>
+        android:layout_marginTop="10dp"
+        android:textColor="@android:color/white"
+        android:padding="10dp"
+        android:textAlignment="center"
+        android:text="LOGIN"/>
 
     <LinearLayout
         android:layout_marginTop="15dp"

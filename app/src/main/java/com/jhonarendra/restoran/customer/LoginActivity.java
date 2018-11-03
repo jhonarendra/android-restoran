@@ -15,8 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
-    protected Button btnLogin;
-    protected TextView tvRegister;
+    protected TextView tvRegister, tvLogin;
     protected EditText etUsername,etPassword;
 
     private final String USERNAME="jona";
@@ -34,30 +33,27 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         setContentView(R.layout.activity_login);
 
-        btnLogin=findViewById(R.id.btn_login);
+        tvLogin=findViewById(R.id.tv_login);
         tvRegister=findViewById(R.id.tv_register);
 
         etUsername=findViewById(R.id.et_username);
         etPassword=findViewById(R.id.et_password);
 
-        btnLogin.setOnClickListener(this);
+        tvLogin.setOnClickListener(this);
         tvRegister.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.btn_login:
+            case R.id.tv_login:
                 String inputUsername = etUsername.getText().toString();
                 String inputPassword = etPassword.getText().toString();
                 if (inputUsername.equals(USERNAME)&&inputPassword.equals(PASSWORD)){
                     Toast.makeText(LoginActivity.this, "Login Berhasil", Toast.LENGTH_SHORT).show();
-//                    LOGIN_STATUS="true";
                     sharedPreferences.edit()
                             .putString("login","true")
                             .putString("nama",inputUsername)
-//                            .putString("username",inputUsername)
-//                            .putInt("umur",21)
                             .apply();
 
                     Intent intent=new Intent(getApplicationContext(),MainActivity.class);
@@ -68,6 +64,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }
                 break;
             case R.id.tv_register:
+                Intent i=new Intent(getApplicationContext(),RegisterActivity.class);
+                startActivity(i);
+                finish();
                 break;
         }
     }
