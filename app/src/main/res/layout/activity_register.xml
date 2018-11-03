@@ -11,11 +11,11 @@
         tools:context=".RegisterActivity"
         android:orientation="vertical"
         android:padding="40dp"
-        android:background="@color/colorPrimary">
+        android:background="@drawable/warna">
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="150dp"
-            android:src="@drawable/icon"
+            android:src="@drawable/logo1"
             android:adjustViewBounds="true"
             android:layout_gravity="center_horizontal"/>
         <EditText
