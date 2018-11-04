@@ -26,16 +26,4 @@ public class Result {
         return deskripsi_hidangan;
     }
 
-    //    public String getNIM() {
-//        return nim_mhs;
-//    }
-//
-//    public String getNamaMhs() {
-//        return nama_mhs;
-//    }
-//
-//    public String getIDMhs() {
-//        return id_mhs;
-//    }
-
 }

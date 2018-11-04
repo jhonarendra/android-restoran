@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.content.SharedPreferences;
 import android.widget.TextView;
+import android.widget.ViewFlipper;
 
 import com.jhonarendra.restoran.customer.api.RegisterAPI;
 import com.jhonarendra.restoran.customer.api.Result;
@@ -30,6 +31,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 //    protected Button btnLogin;
     protected TextView txtUser, txtLogin, txtLogout;
+    protected ViewFlipper viewFlipper;
 
     SharedPreferences sharedPreferences;
     PreferencesHelper preferencesHelper;
@@ -45,6 +47,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        viewFlipper = findViewById(R.id.viewflipper);
+        viewFlipper.setFlipInterval(2000);
+        viewFlipper.startFlipping();
 
         ButterKnife.bind(this);
         viewAdapter = new RVMhs(this, results);
@@ -119,6 +125,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Intent intent=new Intent(getApplicationContext(),MainActivity.class);
                 startActivity(intent);
                 finish();
+                break;
         }
     }
 }
