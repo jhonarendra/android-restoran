@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -29,19 +30,16 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
-//    protected Button btnLogin;
-    protected TextView txtUser, txtLogin, txtLogout;
+
+    protected TextView txtUser, txtLogin, txtLogout, txtTes;
+    protected CardView btnBurger;
     protected ViewFlipper viewFlipper;
 
     SharedPreferences sharedPreferences;
     PreferencesHelper preferencesHelper;
 
 
-    public static final String URL = "http://jonarendra.000webhostapp.com/";
-    private List<Result> results = new ArrayList<>();
-    private RVMhs viewAdapter;
 
-    @BindView(R.id.rv_mhs) RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,14 +50,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         viewFlipper.setFlipInterval(2000);
         viewFlipper.startFlipping();
 
-        ButterKnife.bind(this);
-        viewAdapter = new RVMhs(this, results);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(viewAdapter);
 
-        loadDataMahasiswa();
 
 
 
@@ -67,10 +58,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         sharedPreferences = getSharedPreferences("user", Context.MODE_PRIVATE);
 
-//        btnLogin = findViewById(R.id.btn_login);
         txtUser = findViewById(R.id.txt_user);
         txtLogin = findViewById(R.id.txt_login);
         txtLogout = findViewById(R.id.txt_logout);
+        txtTes = findViewById(R.id.txt_tes);
+
+        btnBurger = findViewById(R.id.btn_burger);
 
         String login = sharedPreferences.getString("login", "");
 
@@ -84,31 +77,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         txtLogin.setOnClickListener(this);
         txtLogout.setOnClickListener(this);
-    }
-
-    private void loadDataMahasiswa() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        RegisterAPI api = retrofit.create(RegisterAPI.class);
-        Call<Value> call = api.view();
-        call.enqueue(new Callback<Value>() {
-            @Override
-            public void onResponse(Call<Value> call, Response<Value> response) {
-                String value = response.body().getValue();
-
-                    results = response.body().getResult();
-                    viewAdapter = new RVMhs(MainActivity.this, results);
-                    recyclerView.setAdapter(viewAdapter);
-
-            }
-
-            @Override
-            public void onFailure(Call<Value> call, Throwable t) {
-
-            }
-        });
+        txtTes.setOnClickListener(this);
+        btnBurger.setOnClickListener(this);
     }
 
     @Override
@@ -116,7 +86,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (view.getId()){
             case R.id.txt_login:
                 startActivity(new Intent(this,LoginActivity.class));
-                finish();
                 break;
             case R.id.txt_logout:
                 sharedPreferences.edit()
@@ -125,6 +94,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Intent intent=new Intent(getApplicationContext(),MainActivity.class);
                 startActivity(intent);
                 finish();
+                break;
+            case R.id.btn_burger:
+                Intent i=new Intent(getApplicationContext(),MenuBurgerActivity.class);
+                startActivity(i);
+                break;
+            case R.id.txt_tes:
+                Intent a = new Intent(getApplicationContext(), Main2Activity.class);
+                startActivity(a);
                 break;
         }
     }
