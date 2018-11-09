@@ -24,6 +24,9 @@ public class Main2Activity extends AppCompatActivity {
                 case R.id.navigation_user:
                     selectedFragment = new UserFragment();
                     break;
+                case R.id.navigation_comment:
+                    selectedFragment = new CommentFragment();
+                    break;
                 case R.id.navigation_info:
                     selectedFragment = new AboutFragment();
                     break;

@@ -53,14 +53,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                         .putString("login","true")
                         .putString("nama",inputNama)
                         .apply();
-                Intent intent=new Intent(getApplicationContext(),MainActivity.class);
+                Intent intent=new Intent(getApplicationContext(),Main2Activity.class);
                 startActivity(intent);
                 finish();
                 break;
             case R.id.tv_login_r:
                 Intent i=new Intent(getApplicationContext(),LoginActivity.class);
                 startActivity(i);
-                finish();
                 break;
         }
     }

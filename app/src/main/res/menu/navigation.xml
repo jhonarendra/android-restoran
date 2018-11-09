@@ -12,6 +12,11 @@
         android:title="@string/title_user" />
 
     <item
+        android:id="@+id/navigation_comment"
+        android:icon="@drawable/ic_chat_bubble_black_24dp"
+        android:title="@string/title_comment" />
+
+    <item
         android:id="@+id/navigation_info"
         android:icon="@drawable/ic_info_black_24dp"
         android:title="@string/title_about" />

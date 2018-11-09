@@ -18,8 +18,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected TextView tvRegister, tvLogin;
     protected EditText etUsername,etPassword;
 
-    private final String USERNAME="jona";
-    private final String PASSWORD="jona";
+//    private final String USERNAME="jona";
+//    private final String PASSWORD="jona";
 //    public static String LOGIN_STATUS="false";
 
     SharedPreferences sharedPreferences;
@@ -49,24 +49,23 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.tv_login:
                 String inputUsername = etUsername.getText().toString();
                 String inputPassword = etPassword.getText().toString();
-                if (inputUsername.equals(USERNAME)&&inputPassword.equals(PASSWORD)){
+//                if (inputUsername.equals(USERNAME)&&inputPassword.equals(PASSWORD)){
                     Toast.makeText(LoginActivity.this, "Login Berhasil", Toast.LENGTH_SHORT).show();
                     sharedPreferences.edit()
                             .putString("login","true")
                             .putString("nama",inputUsername)
                             .apply();
 
-                    Intent intent=new Intent(getApplicationContext(),MainActivity.class);
+                    Intent intent=new Intent(getApplicationContext(),Main2Activity.class);
                     startActivity(intent);
                     finish();
-                } else {
-                    Toast.makeText(LoginActivity.this, "Login Gagal", Toast.LENGTH_SHORT).show();
-                }
+//                } else {
+//                    Toast.makeText(LoginActivity.this, "Login Gagal", Toast.LENGTH_SHORT).show();
+//                }
                 break;
             case R.id.tv_register:
                 Intent i=new Intent(getApplicationContext(),RegisterActivity.class);
                 startActivity(i);
-                finish();
                 break;
         }
     }

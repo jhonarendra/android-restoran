@@ -2,6 +2,7 @@
     <string name="app_name">Fiften Resto</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="title_home">Home</string>
-    <string name="title_user">User</string>
+    <string name="title_user">Profile</string>
+    <string name="title_comment">Comment</string>
     <string name="title_about">About</string>
 </resources>
