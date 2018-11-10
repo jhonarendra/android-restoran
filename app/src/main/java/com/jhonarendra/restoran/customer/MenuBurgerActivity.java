@@ -40,12 +40,30 @@ public class MenuBurgerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_burger);
 
+
+	// recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
+        // recyclerView.setNestedScrollingEnabled(false);
+        // recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+
         ButterKnife.bind(this);
         viewAdapter = new RVMhs(this, results);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(viewAdapter);
+
+//	bangunDatarList.add(new BangunDatarItem(
+              //  "Trapesium",
+              //  "Trapesium adalah bangun datar yang memiliki sepasang sisi sejajar dan sisi lainnya menghubungkan sisi sejajar.",
+             //   R.drawable.trapesium,
+            //    R.drawable.white_trapesium,
+             //   "s1 + s2 + a + b",
+             //   "{(a + b) x t} / 2",
+           //     R.drawable.rumus_trapesium
+        // ));
+
+//	adapter = new BangunDatarAdapter(this, bangunDatarList);
+//        recyclerView.setAdapter(adapter);
 
         loadDataMahasiswa();
     }
