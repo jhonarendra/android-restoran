@@ -43,8 +43,8 @@ public class RVMhs extends RecyclerView.Adapter<RVMhs.ViewHolder> {
         holder.textViewDeskripsi.setText(result.getDeskripsi_hidangan());
         holder.textViewHarga.setText(result.getHarga_hidangan());
 
-        int resId = context.getResources().getIdentifier(result.getFoto_hidangan(), "drawable", context.getPackageName());
-        holder.ivFotoHidangan.setImageResource(resId);
+//        int resId = context.getResources().getIdentifier(result.getFoto_hidangan(), "drawable", context.getPackageName());
+//        holder.ivFotoHidangan.setImageResource(resId);
 
     }
 

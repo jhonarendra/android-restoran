@@ -29,7 +29,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MenuBurgerActivity extends AppCompatActivity {
 
-    public static final String URL = "http://jonarendra.000webhostapp.com/";
     private List<Result> results = new ArrayList<>();
     private RVMhs viewAdapter;
 
@@ -69,7 +68,7 @@ public class MenuBurgerActivity extends AppCompatActivity {
     }
     private void loadDataMahasiswa() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(URL)
+                .baseUrl(Main2Activity.URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         RegisterAPI api = retrofit.create(RegisterAPI.class);
@@ -77,7 +76,7 @@ public class MenuBurgerActivity extends AppCompatActivity {
         call.enqueue(new Callback<Value>() {
             @Override
             public void onResponse(Call<Value> call, Response<Value> response) {
-                String value = response.body().getValue();
+//                String value = response.body().getValue();
 
                 results = response.body().getResult();
                 viewAdapter = new RVMhs(MenuBurgerActivity.this, results);

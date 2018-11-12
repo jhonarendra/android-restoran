@@ -10,10 +10,18 @@ import retrofit2.http.POST;
 import retrofit2.http.GET;
 
 public interface RegisterAPI {
-    @GET("select.php")
+    @GET("hidangan")//    @GET("select.php")
     Call<Value> view();
-//    @FormUrlEncoded
-//    @POST("/insert.php")
-//    Call<Value> daftar(@Field("nim_mhs") String nim_mhs,
-//                       @Field("nama_mhs") String nama_mhs);
+
+    @FormUrlEncoded
+    @POST("pelanggan/login")
+    Call<Value> login(@Field("username_pelanggan") String username_pelanggan,
+                       @Field("password_pelanggan") String password_pelanggan);
+
+    @FormUrlEncoded
+    @POST("pelanggan/register")
+    Call<Value> register(@Field("nama_pelanggan") String nama_pelanggan,
+                         @Field("email_pelanggan") String email_pelanggan,
+                         @Field("username_pelanggan") String username_pelanggan,
+                      @Field("password_pelanggan") String password_pelanggan);
 }

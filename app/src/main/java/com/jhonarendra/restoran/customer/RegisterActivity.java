@@ -12,6 +12,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.jhonarendra.restoran.customer.api.RegisterAPI;
+import com.jhonarendra.restoran.customer.api.Value;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 /**
  * Created by Jhonarendra on 11/2/2018.
  */
@@ -42,20 +51,41 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.tv_register_r:
-                String inputNama = etNama.getText().toString();
-                String inputEmail = etEmail.getText().toString();
-                String inputUsername = etUsernameR.getText().toString();
-                String inputPassword = etPasswordR.getText().toString();
+                final String inputNama = etNama.getText().toString();
+                final String inputEmail = etEmail.getText().toString();
+                final String inputUsername = etUsernameR.getText().toString();
+                final String inputPassword = etPasswordR.getText().toString();
 
-                Toast.makeText(RegisterActivity.this, "Akun "+inputNama+" berhasil login. Email anda "+inputEmail+". Username anda"+inputUsername+". Password anda"+inputPassword, Toast.LENGTH_SHORT).show();
+                Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl(Main2Activity.URL)
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+                RegisterAPI api = retrofit.create(RegisterAPI.class);
+                Call<Value> call = api.register(inputNama, inputEmail, inputUsername, inputPassword);
+                call.enqueue(new Callback<Value>() {
+                                 @Override
+                                 public void onResponse(Call<Value> call, Response<Value> response) {
+                                     Boolean success = response.body().getSuccess();
+                                     if (success){
+                                         Toast.makeText(RegisterActivity.this, "Akun " + inputNama + " berhasil dibuat!", Toast.LENGTH_SHORT).show();
 
-                sharedPreferences.edit()
-                        .putString("login","true")
-                        .putString("nama",inputNama)
-                        .apply();
-                Intent intent=new Intent(getApplicationContext(),Main2Activity.class);
-                startActivity(intent);
-                finish();
+                                         sharedPreferences.edit()
+                                                 .putString("login","true")
+                                                 .putString("nama",inputNama)
+                                                 .apply();
+                                         Intent intent=new Intent(getApplicationContext(),Main2Activity.class);
+                                         startActivity(intent);
+                                         finish();
+                                     } else {
+                                         Toast.makeText(RegisterActivity.this, "Gagal membuat akun", Toast.LENGTH_SHORT).show();
+                                     }
+                                 }
+
+                                 @Override
+                                 public void onFailure(Call<Value> call, Throwable t) {
+
+                                 }
+                             });
                 break;
             case R.id.tv_login_r:
                 Intent i=new Intent(getApplicationContext(),LoginActivity.class);

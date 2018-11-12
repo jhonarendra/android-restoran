@@ -7,12 +7,12 @@ import java.util.List;
  */
 
 public class Value {
-    String value;
+    Boolean success;
     List<Result> result;
     String message;
 
-    public String getValue() {
-        return value;
+    public Boolean getSuccess() {
+        return success;
     }
 
     public String getMessage() {

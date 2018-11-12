@@ -14,7 +14,14 @@ public class Result {
     String foto_hidangan;
     String harga_hidangan;
 
-
+//    public Result(String id_hidangan, String nama_hidangan, String deskripsi_hidangan, String kategori_hidangan, String foto_hidangan, String harga_hidangan){
+//        this.id_hidangan = id_hidangan;
+//        this.nama_hidangan = nama_hidangan;
+//        this.deskripsi_hidangan = deskripsi_hidangan;
+//        this.kategori_hidangan = kategori_hidangan;
+//        this.foto_hidangan = foto_hidangan;
+//        this.harga_hidangan = harga_hidangan;
+//    }
 
     public String getId_hidangan() {
         return id_hidangan;

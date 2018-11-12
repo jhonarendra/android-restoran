@@ -34,7 +34,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class HomeFragment extends Fragment {
     protected LinearLayout llBurger;
 
-    public static final String URL = "http://jonarendra.000webhostapp.com/";
+//    public static final String URL = "http://jonarendra.000webhostapp.com/";
+//    public static final String URL = "http://jhonarendra:8000/";
+//    public static final String URL = "http://192.168.43.102:8000/";
     private List<Result> results = new ArrayList<>();
     private RecyclerViewMenu menuAdapter;
 
@@ -67,7 +69,7 @@ public class HomeFragment extends Fragment {
 
     private void loadDataMenu() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(URL)
+                .baseUrl(Main2Activity.URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         RegisterAPI api = retrofit.create(RegisterAPI.class);
@@ -75,7 +77,7 @@ public class HomeFragment extends Fragment {
         call.enqueue(new Callback<Value>() {
             @Override
             public void onResponse(Call<Value> call, Response<Value> response) {
-                String value = response.body().getValue();
+//                String value = response.body().getValue();
 
                 results = response.body().getResult();
                 menuAdapter = new RecyclerViewMenu(getActivity(), results);

@@ -14,6 +14,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.jhonarendra.restoran.customer.api.RegisterAPI;
+import com.jhonarendra.restoran.customer.api.Value;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     protected TextView tvRegister, tvLogin;
     protected EditText etUsername,etPassword;
@@ -47,21 +56,40 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.tv_login:
-                String inputUsername = etUsername.getText().toString();
+                final String inputUsername = etUsername.getText().toString();
                 String inputPassword = etPassword.getText().toString();
-//                if (inputUsername.equals(USERNAME)&&inputPassword.equals(PASSWORD)){
-                    Toast.makeText(LoginActivity.this, "Login Berhasil", Toast.LENGTH_SHORT).show();
-                    sharedPreferences.edit()
-                            .putString("login","true")
-                            .putString("nama",inputUsername)
-                            .apply();
 
-                    Intent intent=new Intent(getApplicationContext(),Main2Activity.class);
-                    startActivity(intent);
-                    finish();
-//                } else {
-//                    Toast.makeText(LoginActivity.this, "Login Gagal", Toast.LENGTH_SHORT).show();
-//                }
+                Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl(Main2Activity.URL)
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+                RegisterAPI api = retrofit.create(RegisterAPI.class);
+                Call<Value> call = api.login(inputUsername, inputPassword);
+                call.enqueue(new Callback<Value>() {
+                    @Override
+                    public void onResponse(Call<Value> call, Response<Value> response) {
+                        Boolean success = response.body().getSuccess();
+                        if (success){
+                            Toast.makeText(LoginActivity.this, "Login Berhasil", Toast.LENGTH_SHORT).show();
+                            sharedPreferences.edit()
+                                    .putString("login","true")
+                                    .putString("nama",inputUsername)
+                                    .apply();
+
+                            Intent intent=new Intent(getApplicationContext(),Main2Activity.class);
+                            startActivity(intent);
+                            finish();
+                        } else {
+                            Toast.makeText(LoginActivity.this, "Login Gagal", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Value> call, Throwable t) {
+
+                    }
+                });
+
                 break;
             case R.id.tv_register:
                 Intent i=new Intent(getApplicationContext(),RegisterActivity.class);

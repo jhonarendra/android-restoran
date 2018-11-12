@@ -2,6 +2,7 @@ package com.jhonarendra.restoran.customer;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,10 @@ import android.widget.TextView;
 
 import com.jhonarendra.restoran.customer.api.Result;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 
 import butterknife.BindView;
@@ -43,8 +48,26 @@ public class RecyclerViewMenu extends RecyclerView.Adapter<RecyclerViewMenu.View
         holder.textViewNama.setText(result.getNama_hidangan());
         holder.textViewHarga.setText(result.getHarga_hidangan());
 
-        int resId = context.getResources().getIdentifier(result.getFoto_hidangan(), "drawable", context.getPackageName());
-        holder.ivFotoHidangan.setImageResource(resId);
+
+//        String address = "http://192.168.43.102:8000/upload/"+result.getFoto_hidangan();
+//        String address = "http://192.168.43.102:8000/upload/burger_cheese_burger.png";
+
+
+//        try {
+//            URL url = new URL(address);
+//            InputStream content = (InputStream)url.getContent();
+//            Drawable d = Drawable.createFromStream(content, "src");
+//            holder.ivFotoHidangan.setImageDrawable(d);
+//        } catch (MalformedURLException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
+
+
+//        int resId = context.getResources().getIdentifier(result.getFoto_hidangan(), "drawable", context.getPackageName());
+//        holder.ivFotoHidangan.setImageResource(resId);
     }
 
     @Override
