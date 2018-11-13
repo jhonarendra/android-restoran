@@ -35,7 +35,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_register);
 
         sharedPreferences = getSharedPreferences("user", Context.MODE_PRIVATE);
-
+//deklarasiin xml
         etNama = findViewById(R.id.et_nama);
         etEmail = findViewById(R.id.et_email);
         etUsernameR = findViewById(R.id.et_username_r);
@@ -50,12 +50,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View view) {
         switch (view.getId()){
+            //pas tombol register di klik
             case R.id.tv_register_r:
                 final String inputNama = etNama.getText().toString();
                 final String inputEmail = etEmail.getText().toString();
                 final String inputUsername = etUsernameR.getText().toString();
                 final String inputPassword = etPasswordR.getText().toString();
-
+            //manggil api
                 Retrofit retrofit = new Retrofit.Builder()
                         .baseUrl(Main2Activity.URL)
                         .addConverterFactory(GsonConverterFactory.create())
