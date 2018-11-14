@@ -10,8 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.jhonarendra.restoran.customer.api.Result;
 
 import java.io.IOException;
@@ -50,35 +52,23 @@ public class RecyclerViewMenu extends RecyclerView.Adapter<RecyclerViewMenu.View
         holder.textViewNama.setText(result.getNama_hidangan());
         holder.textViewHarga.setText(result.getHarga_hidangan());
 
-//        holder.cvAllMenu.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(context, DetailHidangan.class);
-//                intent.putExtra("nama_hidangan", results.get(position).getNama_hidangan());
-//                intent.putExtra("deskripsi_hidangan", results.get(position).getDeskripsi_hidangan());
-//                intent.putExtra("kateogori_hidangan", results.get(position).getKategori_hidangan());
-//                intent.putExtra("harga_hidangan", results.get(position).getHarga_hidangan());
-//                intent.putExtra("foto_hidangan", results.get(position).getFoto_hidangan());
-//            }
-//        });
+        String address = "";
+        address = Main2Activity.URL+"upload/"+result.getFoto_hidangan();
+        Glide.with(context).load(address).into(holder.ivFotoHidangan);
 
+        holder.llAllMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, DetailHidangan.class);
+                intent.putExtra("nama_hidangan", results.get(position).getNama_hidangan());
+                intent.putExtra("deskripsi_hidangan", results.get(position).getDeskripsi_hidangan());
+                intent.putExtra("kateogori_hidangan", results.get(position).getKategori_hidangan());
+                intent.putExtra("harga_hidangan", results.get(position).getHarga_hidangan());
+                intent.putExtra("foto_hidangan", results.get(position).getFoto_hidangan());
 
-//        String address = "http://192.168.43.102:8000/upload/"+result.getFoto_hidangan();
-//        String address = "http://192.168.43.102:8000/upload/burger_cheese_burger.png";
-
-
-//        try {
-//            URL url = new URL(address);
-//            InputStream content = (InputStream)url.getContent();
-//            Drawable d = Drawable.createFromStream(content, "src");
-//            holder.ivFotoHidangan.setImageDrawable(d);
-//        } catch (MalformedURLException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
-
+                context.startActivity(intent);
+            }
+        });
 
 //        int resId = context.getResources().getIdentifier(result.getFoto_hidangan(), "drawable", context.getPackageName());
 //        holder.ivFotoHidangan.setImageResource(resId);
@@ -94,7 +84,8 @@ public class RecyclerViewMenu extends RecyclerView.Adapter<RecyclerViewMenu.View
         @BindView(R.id.tv_nama_hidangan) TextView textViewNama;
         @BindView(R.id.tv_harga_hidangan) TextView textViewHarga;
         @BindView(R.id.iv_foto_hidangan) ImageView ivFotoHidangan;
-        @BindView(R.id.cv_all_menu) CardView cvAllMenu;
+        @BindView(R.id.ll_all_menu)
+        LinearLayout llAllMenu;
 
         public ViewHolder(View itemView) {
             super(itemView);

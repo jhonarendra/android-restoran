@@ -27,9 +27,6 @@ public class Main2Activity extends AppCompatActivity {
                 case R.id.navigation_comment:
                     selectedFragment = new CommentFragment();
                     break;
-                case R.id.navigation_info:
-                    selectedFragment = new AboutFragment();
-                    break;
             }
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
             return true;

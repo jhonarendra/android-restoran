@@ -49,6 +49,7 @@
                         android:text="Burger"/>
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/ll_salad"
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -64,6 +65,7 @@
                         android:text="Salad"/>
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/ll_minuman"
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -79,6 +81,7 @@
                         android:text="Minuman"/>
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/ll_dessert"
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -94,6 +97,7 @@
                         android:text="Dessert"/>
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/ll_breakfast"
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -101,16 +105,17 @@
                     <ImageView
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:src="@drawable/kategori_cemilan"/>
+                        android:src="@drawable/kategori_breakfast"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/colorPrimary"
-                        android:text="Cemilan"/>
+                        android:text="Breakfast"/>
                 </LinearLayout>
             </LinearLayout>
         </HorizontalScrollView>
 
+        <!-- RECOMMENDED -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -120,7 +125,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tes Dari Database"
+                android:text="Recommended"
                 android:textColor="@color/colorPrimary"
                 android:textStyle="bold"/>
         </LinearLayout>
@@ -135,6 +140,36 @@
                 android:padding="10dp">
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/rv_all_menu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <!-- BURGER -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="20dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Burger"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"/>
+        </LinearLayout>
+        <HorizontalScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:scrollbarSize="0dp">
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp">
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_burger_menu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <android.support.v7.widget.CardView
@@ -167,6 +202,7 @@
             </LinearLayout>
         </HorizontalScrollView>
 
+        <!-- SALAD -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -176,7 +212,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Burger"
+                android:text="Salad"
                 android:textColor="@color/colorPrimary"
                 android:textStyle="bold"/>
         </LinearLayout>
@@ -189,6 +225,10 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:padding="10dp">
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_salad_menu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
                 <android.support.v7.widget.CardView
                     xmlns:android="http://schemas.android.com/apk/res/android"
                     xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -198,156 +238,8 @@
                     card_view:cardCornerRadius="15dp"
                     card_view:cardUseCompatPadding="true">
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="180dp"
-                        android:orientation="vertical"
-                        android:gravity="center"
-                        android:padding="10dp">
-                        <ImageView
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
-                            android:src="@drawable/kategori_burger"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingBottom="5dp"
-                            android:textColor="@color/colorPrimary"
-                            android:textStyle="bold"
-                            android:text="Burger Besar"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Rp 47.272,-"
-                            android:paddingTop="5dp"
-                            android:paddingRight="10dp"
-                            android:paddingBottom="5dp"
-                            android:paddingLeft="5dp"
-                            android:textColor="@android:color/white"
-                            android:background="@drawable/bg_btn"/>
-                    </LinearLayout>
-                </android.support.v7.widget.CardView>
-                <android.support.v7.widget.CardView
-                    xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    card_view:cardElevation="5dp"
-                    card_view:cardCornerRadius="15dp"
-                    card_view:cardUseCompatPadding="true">
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="180dp"
-                        android:orientation="vertical"
-                        android:gravity="center"
-                        android:padding="10dp">
-                        <ImageView
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
-                            android:src="@drawable/kategori_burger"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingBottom="5dp"
-                            android:textColor="@color/colorPrimary"
-                            android:textStyle="bold"
-                            android:text="Burger M"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Rp 35.454,-"
-                            android:paddingTop="5dp"
-                            android:paddingRight="10dp"
-                            android:paddingBottom="5dp"
-                            android:paddingLeft="5dp"
-                            android:textColor="@android:color/white"
-                            android:background="@drawable/bg_btn"/>
-                    </LinearLayout>
-                </android.support.v7.widget.CardView>
-                <android.support.v7.widget.CardView
-                    xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    card_view:cardElevation="5dp"
-                    card_view:cardCornerRadius="15dp"
-                    card_view:cardUseCompatPadding="true">
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="180dp"
-                        android:orientation="vertical"
-                        android:gravity="center"
-                        android:padding="10dp">
-                        <ImageView
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
-                            android:src="@drawable/kategori_burger"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingBottom="5dp"
-                            android:textColor="@color/colorPrimary"
-                            android:textStyle="bold"
-                            android:text="Happy Meal"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Rp 27.272,-"
-                            android:paddingTop="5dp"
-                            android:paddingRight="10dp"
-                            android:paddingBottom="5dp"
-                            android:paddingLeft="5dp"
-                            android:textColor="@android:color/white"
-                            android:background="@drawable/bg_btn"/>
-                    </LinearLayout>
-                </android.support.v7.widget.CardView>
-                <android.support.v7.widget.CardView
-                    xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    card_view:cardElevation="5dp"
-                    card_view:cardCornerRadius="15dp"
-                    card_view:cardUseCompatPadding="true">
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="180dp"
-                        android:orientation="vertical"
-                        android:gravity="center"
-                        android:padding="10dp">
-                        <ImageView
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
-                            android:src="@drawable/kategori_burger"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingBottom="5dp"
-                            android:textColor="@color/colorPrimary"
-                            android:textStyle="bold"
-                            android:text="Burger"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Rp 47.272,-"
-                            android:paddingTop="5dp"
-                            android:paddingRight="10dp"
-                            android:paddingBottom="5dp"
-                            android:paddingLeft="5dp"
-                            android:textColor="@android:color/white"
-                            android:background="@drawable/bg_btn"/>
-                    </LinearLayout>
-                </android.support.v7.widget.CardView>
-                <android.support.v7.widget.CardView
-                    xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    card_view:cardElevation="5dp"
-                    card_view:cardCornerRadius="15dp"
-                    card_view:cardUseCompatPadding="true">
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="180dp"
+                        android:layout_width="120dp"
+                        android:layout_height="200dp"
                         android:orientation="vertical"
                         android:gravity="center"
                         android:padding="10dp">
@@ -367,6 +259,7 @@
             </LinearLayout>
         </HorizontalScrollView>
 
+        <!-- MINUMAN -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -389,6 +282,10 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:padding="10dp">
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_minuman_menu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
                 <android.support.v7.widget.CardView
                     xmlns:android="http://schemas.android.com/apk/res/android"
                     xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -398,156 +295,8 @@
                     card_view:cardCornerRadius="15dp"
                     card_view:cardUseCompatPadding="true">
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="180dp"
-                        android:orientation="vertical"
-                        android:gravity="center"
-                        android:padding="10dp">
-                        <ImageView
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
-                            android:src="@drawable/kategori_minuman"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingBottom="5dp"
-                            android:textColor="@color/colorPrimary"
-                            android:textStyle="bold"
-                            android:text="Coca cola"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Rp 7.272,-"
-                            android:paddingTop="5dp"
-                            android:paddingRight="10dp"
-                            android:paddingBottom="5dp"
-                            android:paddingLeft="5dp"
-                            android:textColor="@android:color/white"
-                            android:background="@drawable/bg_btn"/>
-                    </LinearLayout>
-                </android.support.v7.widget.CardView>
-                <android.support.v7.widget.CardView
-                    xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    card_view:cardElevation="5dp"
-                    card_view:cardCornerRadius="15dp"
-                    card_view:cardUseCompatPadding="true">
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="180dp"
-                        android:orientation="vertical"
-                        android:gravity="center"
-                        android:padding="10dp">
-                        <ImageView
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
-                            android:src="@drawable/kategori_minuman"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingBottom="5dp"
-                            android:textColor="@color/colorPrimary"
-                            android:textStyle="bold"
-                            android:text="Sprite"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Rp 9.090,-"
-                            android:paddingTop="5dp"
-                            android:paddingRight="10dp"
-                            android:paddingBottom="5dp"
-                            android:paddingLeft="5dp"
-                            android:textColor="@android:color/white"
-                            android:background="@drawable/bg_btn"/>
-                    </LinearLayout>
-                </android.support.v7.widget.CardView>
-                <android.support.v7.widget.CardView
-                    xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    card_view:cardElevation="5dp"
-                    card_view:cardCornerRadius="15dp"
-                    card_view:cardUseCompatPadding="true">
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="180dp"
-                        android:orientation="vertical"
-                        android:gravity="center"
-                        android:padding="10dp">
-                        <ImageView
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
-                            android:src="@drawable/kategori_minuman"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingBottom="5dp"
-                            android:textColor="@color/colorPrimary"
-                            android:textStyle="bold"
-                            android:text="Aqua"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Rp 5.454,-"
-                            android:paddingTop="5dp"
-                            android:paddingRight="10dp"
-                            android:paddingBottom="5dp"
-                            android:paddingLeft="5dp"
-                            android:textColor="@android:color/white"
-                            android:background="@drawable/bg_btn"/>
-                    </LinearLayout>
-                </android.support.v7.widget.CardView>
-                <android.support.v7.widget.CardView
-                    xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    card_view:cardElevation="5dp"
-                    card_view:cardCornerRadius="15dp"
-                    card_view:cardUseCompatPadding="true">
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="180dp"
-                        android:orientation="vertical"
-                        android:gravity="center"
-                        android:padding="10dp">
-                        <ImageView
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
-                            android:src="@drawable/kategori_minuman"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingBottom="5dp"
-                            android:textColor="@color/colorPrimary"
-                            android:textStyle="bold"
-                            android:text="Coca cola"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Rp 47.272,-"
-                            android:paddingTop="5dp"
-                            android:paddingRight="10dp"
-                            android:paddingBottom="5dp"
-                            android:paddingLeft="5dp"
-                            android:textColor="@android:color/white"
-                            android:background="@drawable/bg_btn"/>
-                    </LinearLayout>
-                </android.support.v7.widget.CardView>
-                <android.support.v7.widget.CardView
-                    xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    card_view:cardElevation="5dp"
-                    card_view:cardCornerRadius="15dp"
-                    card_view:cardUseCompatPadding="true">
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="180dp"
+                        android:layout_width="120dp"
+                        android:layout_height="200dp"
                         android:orientation="vertical"
                         android:gravity="center"
                         android:padding="10dp">
@@ -566,6 +315,121 @@
                 </android.support.v7.widget.CardView>
             </LinearLayout>
         </HorizontalScrollView>
+
+        <!-- DESSERT -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="20dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dessert"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"/>
+        </LinearLayout>
+        <HorizontalScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:scrollbarSize="0dp">
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp">
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_dessert_menu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <android.support.v7.widget.CardView
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    card_view:cardElevation="5dp"
+                    card_view:cardCornerRadius="15dp"
+                    card_view:cardUseCompatPadding="true">
+                    <LinearLayout
+                        android:layout_width="120dp"
+                        android:layout_height="200dp"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="10dp">
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:src="@drawable/ic_chevron_right_black_24dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="5dp"
+                            android:textColor="@color/colorPrimary"
+                            android:textStyle="bold"
+                            android:text="Selengkapnya"/>
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <!-- BREAKFAST -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="20dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Breakfast"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"/>
+        </LinearLayout>
+        <HorizontalScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:scrollbarSize="0dp">
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp">
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_breakfast_menu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <android.support.v7.widget.CardView
+                    xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    card_view:cardElevation="5dp"
+                    card_view:cardCornerRadius="15dp"
+                    card_view:cardUseCompatPadding="true">
+                    <LinearLayout
+                        android:layout_width="120dp"
+                        android:layout_height="200dp"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="10dp">
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:src="@drawable/ic_chevron_right_black_24dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="5dp"
+                            android:textColor="@color/colorPrimary"
+                            android:textStyle="bold"
+                            android:text="Selengkapnya"/>
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+            </LinearLayout>
+        </HorizontalScrollView>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

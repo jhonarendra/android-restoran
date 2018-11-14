@@ -1,5 +1,6 @@
 package com.jhonarendra.restoran.customer;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
@@ -7,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 
 import com.jhonarendra.restoran.customer.api.RegisterAPI;
 import com.jhonarendra.restoran.customer.api.Result;
@@ -51,6 +53,14 @@ public class MenuBurgerActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(viewAdapter);
 
+//        Intent intent = getIntent();
+//        tvDetNamaHidangan.setText(intent.getExtras().getString("nama_hidangan"));
+        Intent intent = getIntent();
+        String kategoriHidangan = intent.getExtras().getString("kategori_hidangan");
+
+
+
+
 //	bangunDatarList.add(new BangunDatarItem(
               //  "Trapesium",
               //  "Trapesium adalah bangun datar yang memiliki sepasang sisi sejajar dan sisi lainnya menghubungkan sisi sejajar.",
@@ -64,24 +74,43 @@ public class MenuBurgerActivity extends AppCompatActivity {
 //	adapter = new BangunDatarAdapter(this, bangunDatarList);
 //        recyclerView.setAdapter(adapter);
 
-        loadDataMahasiswa();
+        loadMenuKategori(kategoriHidangan);
+
+
+
     }
-    private void loadDataMahasiswa() {
+
+    private void loadMenuKategori(String kategoriHidangan) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Main2Activity.URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         RegisterAPI api = retrofit.create(RegisterAPI.class);
-        Call<Value> call = api.view();
+
+        Call<Value> call = null;
+        switch (kategoriHidangan){
+            case "Burger":
+                call = api.burger();
+                break;
+            case "Salad":
+                call = api.salad();
+                break;
+            case "Minuman":
+                call = api.minuman();
+                break;
+            case "Dessert":
+                call = api.dessert();
+                break;
+            case "Breakfast":
+                call = api.breakfast();
+        }
+
         call.enqueue(new Callback<Value>() {
             @Override
             public void onResponse(Call<Value> call, Response<Value> response) {
-//                String value = response.body().getValue();
-
                 results = response.body().getResult();
                 viewAdapter = new RVMhs(MenuBurgerActivity.this, results);
                 recyclerView.setAdapter(viewAdapter);
-
             }
 
             @Override

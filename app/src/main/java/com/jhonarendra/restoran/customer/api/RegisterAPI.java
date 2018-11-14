@@ -13,6 +13,31 @@ public interface RegisterAPI {
     @GET("hidangan")//    @GET("select.php")
     Call<Value> view();
 
+    @GET("hidangan/kategori/Burger")
+    Call<Value> burger();
+    @GET("hidangan/kategori/Burger/limit")
+    Call<Value> burgerLimit();
+
+    @GET("hidangan/kategori/Salad")
+    Call<Value> salad();
+    @GET("hidangan/kategori/Salad/limit")
+    Call<Value> saladLimit();
+
+    @GET("hidangan/kategori/Minuman")
+    Call<Value> minuman();
+    @GET("hidangan/kategori/Minuman/limit")
+    Call<Value> minumanLimit();
+
+    @GET("hidangan/kategori/Dessert")
+    Call<Value> dessert();
+    @GET("hidangan/kategori/Dessert/limit")
+    Call<Value> dessertLimit();
+
+    @GET("hidangan/kategori/Breakfast")
+    Call<Value> breakfast();
+    @GET("hidangan/kategori/Breakfast/limit")
+    Call<Value> breakfastLimit();
+
     @FormUrlEncoded
     @POST("pelanggan/login")
     Call<Value> login(@Field("username_pelanggan") String username_pelanggan,

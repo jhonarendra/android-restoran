@@ -1,33 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView
+    android:id="@+id/cv_menu_kategori"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    card_view:cardCornerRadius="5dp"
     card_view:cardElevation="5dp"
+    card_view:cardCornerRadius="15dp"
     card_view:cardUseCompatPadding="true">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="20dp">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@android:color/white">
         <ImageView
             android:id="@+id/iv_fotohidangan"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="100dp"
+            android:padding="10dp"
+            android:layout_height="100dp"
             android:src="@drawable/burger_cheese_burger"/>
-        <TextView
-            android:id="@+id/tv_nama_hidangan"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:id="@+id/tv_deskripsi_hidangan"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:id="@+id/tv_harga_hidangan"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="20dp"
+            android:paddingBottom="10dp"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp">
+            <TextView
+                android:id="@+id/tv_nama_hidangan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimary"
+                android:text="Burger Cheese"/>
+            <TextView
+                android:layout_gravity="right"
+                android:layout_marginTop="20dp"
+                android:id="@+id/tv_harga_hidangan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rp 47.272,-"
+                android:paddingTop="5dp"
+                android:textStyle="bold"
+                android:paddingRight="10dp"
+                android:paddingBottom="5dp"
+                android:paddingLeft="5dp"
+                android:textColor="@android:color/white"
+                android:background="@drawable/bg_btn"/>
+        </LinearLayout>
     </LinearLayout>
 </android.support.v7.widget.CardView>

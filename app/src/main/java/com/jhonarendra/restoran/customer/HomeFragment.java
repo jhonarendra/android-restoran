@@ -32,57 +32,146 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class HomeFragment extends Fragment {
-    protected LinearLayout llBurger;
+    protected LinearLayout llBurger, llSalad, llMinuman, llDessert, llBreakfast;
 
-//    public static final String URL = "http://jonarendra.000webhostapp.com/";
-//    public static final String URL = "http://jhonarendra:8000/";
-//    public static final String URL = "http://192.168.43.102:8000/";
     private List<Result> results = new ArrayList<>();
-    private RecyclerViewMenu menuAdapter;
+    private List<Result> resultsBurger = new ArrayList<>();
+    private List<Result> resultsSalad = new ArrayList<>();
+    private List<Result> resultsMinuman = new ArrayList<>();
+    private List<Result> resultsDessert = new ArrayList<>();
+    private List<Result> resultsBreakfast = new ArrayList<>();
+    private RecyclerViewMenu menuAdapter, menuBurgerAdapter, menuSaladAdapter, menuMinumanAdapter, menuDessertAdapter, menuBreakfastAdapter;
 
-    RecyclerView recyclerView;
+    RecyclerView recyclerView, rvBurger, rvSalad, rvMinuman, rvDessert, rvBreakfast;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+
         llBurger = view.findViewById(R.id.ll_burger);
+        llSalad = view.findViewById(R.id.ll_salad);
+        llMinuman = view.findViewById(R.id.ll_minuman);
+        llDessert = view.findViewById(R.id.ll_dessert);
+        llBreakfast = view.findViewById(R.id.ll_breakfast);
+
         llBurger.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getActivity(),MenuBurgerActivity.class);
-                startActivity(i);
+                Intent burger = new Intent(getActivity(),MenuBurgerActivity.class);
+                burger.putExtra("kategori_hidangan", "Burger");
+                startActivity(burger);
             }
         });
-        recyclerView = view.findViewById(R.id.rv_all_menu);
-        menuAdapter = new RecyclerViewMenu(getActivity().getApplicationContext(), results);
+        llSalad.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent salad = new Intent(getActivity(),MenuBurgerActivity.class);
+                salad.putExtra("kategori_hidangan", "Salad");
+                startActivity(salad);
+            }
+        });
+        llMinuman.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent minuman = new Intent(getActivity(),MenuBurgerActivity.class);
+                minuman.putExtra("kategori_hidangan", "Minuman");
+                startActivity(minuman);
+            }
+        });
+        llDessert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent dessert = new Intent(getActivity(),MenuBurgerActivity.class);
+                dessert.putExtra("kategori_hidangan", "Dessert");
+                startActivity(dessert);
+            }
+        });
+        llBreakfast.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent breakfast = new Intent(getActivity(),MenuBurgerActivity.class);
+                breakfast.putExtra("kategori_hidangan", "Breakfast");
+                startActivity(breakfast);
+            }
+        });
 
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
+
+        recyclerView = view.findViewById(R.id.rv_all_menu);
+        rvBurger = view.findViewById(R.id.rv_burger_menu);
+        rvBreakfast = view.findViewById(R.id.rv_breakfast_menu);
+        rvSalad = view.findViewById(R.id.rv_salad_menu);
+        rvDessert = view.findViewById(R.id.rv_dessert_menu);
+        rvMinuman = view.findViewById(R.id.rv_minuman_menu);
+
+        menuAdapter = new RecyclerViewMenu(getActivity().getApplicationContext(), results);
+        menuBurgerAdapter = new RecyclerViewMenu(getActivity().getApplicationContext(), resultsBurger);
+        menuSaladAdapter = new RecyclerViewMenu(getActivity().getApplicationContext(), resultsSalad);
+        menuMinumanAdapter = new RecyclerViewMenu(getActivity().getApplicationContext(), resultsMinuman);
+        menuDessertAdapter = new RecyclerViewMenu(getActivity().getApplicationContext(), resultsDessert);
+        menuBreakfastAdapter = new RecyclerViewMenu(getActivity().getApplicationContext(), resultsBreakfast);
+
+        RecyclerView.LayoutManager mLayoutManager= new LinearLayoutManager(getActivity().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
+        RecyclerView.LayoutManager burgerLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
+        RecyclerView.LayoutManager saladLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
+        RecyclerView.LayoutManager minumanLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
+        RecyclerView.LayoutManager dessertLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
+        RecyclerView.LayoutManager breakfastLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
+
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(menuAdapter);
 
+
+        rvBurger.setLayoutManager(burgerLayoutManager);
+        rvBurger.setItemAnimator(new DefaultItemAnimator());
+        rvBurger.setAdapter(menuBurgerAdapter);
+
+
+        rvBreakfast.setLayoutManager(breakfastLayoutManager);
+        rvBreakfast.setItemAnimator(new DefaultItemAnimator());
+        rvBreakfast.setAdapter(menuBreakfastAdapter);
+
+
+        rvSalad.setLayoutManager(saladLayoutManager);
+        rvSalad.setItemAnimator(new DefaultItemAnimator());
+        rvSalad.setAdapter(menuSaladAdapter);
+
+
+        rvDessert.setLayoutManager(dessertLayoutManager);
+        rvDessert.setItemAnimator(new DefaultItemAnimator());
+        rvDessert.setAdapter(menuDessertAdapter);
+
+
+        rvMinuman.setLayoutManager(minumanLayoutManager);
+        rvMinuman.setItemAnimator(new DefaultItemAnimator());
+        rvMinuman.setAdapter(menuMinumanAdapter);
+
+
         loadDataMenu();
+        loadDataBurger();
+        loadDataSalad();
+        loadDataMinuman();
+        loadDataDessert();
+        loadDataBreakfast();
         return view;
 
     }
 
-    private void loadDataMenu() {
+    private void loadDataBreakfast() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Main2Activity.URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         RegisterAPI api = retrofit.create(RegisterAPI.class);
-        Call<Value> call = api.view();
+
+        Call<Value> call = api.breakfastLimit();
         call.enqueue(new Callback<Value>() {
             @Override
             public void onResponse(Call<Value> call, Response<Value> response) {
-//                String value = response.body().getValue();
-
-                results = response.body().getResult();
-                menuAdapter = new RecyclerViewMenu(getActivity(), results);
-                recyclerView.setAdapter(menuAdapter);
-
+                resultsBreakfast = response.body().getResult();
+                menuBreakfastAdapter = new RecyclerViewMenu(getActivity(), resultsBreakfast);
+                rvBreakfast.setAdapter(menuBreakfastAdapter);
             }
 
             @Override
@@ -91,4 +180,120 @@ public class HomeFragment extends Fragment {
             }
         });
     }
+
+    private void loadDataDessert() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Main2Activity.URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        RegisterAPI api = retrofit.create(RegisterAPI.class);
+
+        Call<Value> call = api.dessertLimit();
+        call.enqueue(new Callback<Value>() {
+            @Override
+            public void onResponse(Call<Value> call, Response<Value> response) {
+                resultsDessert = response.body().getResult();
+                menuDessertAdapter = new RecyclerViewMenu(getActivity(), resultsDessert);
+                rvDessert.setAdapter(menuDessertAdapter);
+            }
+
+            @Override
+            public void onFailure(Call<Value> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void loadDataMinuman() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Main2Activity.URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        RegisterAPI api = retrofit.create(RegisterAPI.class);
+
+        Call<Value> call = api.minumanLimit();
+        call.enqueue(new Callback<Value>() {
+            @Override
+            public void onResponse(Call<Value> call, Response<Value> response) {
+                resultsMinuman = response.body().getResult();
+                menuMinumanAdapter = new RecyclerViewMenu(getActivity(), resultsMinuman);
+                rvMinuman.setAdapter(menuMinumanAdapter);
+            }
+
+            @Override
+            public void onFailure(Call<Value> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void loadDataSalad() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Main2Activity.URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        RegisterAPI api = retrofit.create(RegisterAPI.class);
+
+        Call<Value> call = api.saladLimit();
+        call.enqueue(new Callback<Value>() {
+            @Override
+            public void onResponse(Call<Value> call, Response<Value> response) {
+                resultsSalad = response.body().getResult();
+                menuSaladAdapter = new RecyclerViewMenu(getActivity(), resultsSalad);
+                rvSalad.setAdapter(menuSaladAdapter);
+            }
+
+            @Override
+            public void onFailure(Call<Value> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void loadDataBurger() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Main2Activity.URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        RegisterAPI api = retrofit.create(RegisterAPI.class);
+
+        Call<Value> call = api.burgerLimit();
+        call.enqueue(new Callback<Value>() {
+            @Override
+            public void onResponse(Call<Value> call, Response<Value> response) {
+                resultsBurger = response.body().getResult();
+                menuBurgerAdapter = new RecyclerViewMenu(getActivity(), resultsBurger);
+                rvBurger.setAdapter(menuBurgerAdapter);
+            }
+
+            @Override
+            public void onFailure(Call<Value> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void loadDataMenu() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Main2Activity.URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        RegisterAPI api = retrofit.create(RegisterAPI.class);
+
+        Call<Value> call = api.view();
+        call.enqueue(new Callback<Value>() {
+            @Override
+            public void onResponse(Call<Value> call, Response<Value> response) {
+                results = response.body().getResult();
+                menuAdapter = new RecyclerViewMenu(getActivity(), results);
+                recyclerView.setAdapter(menuAdapter);
+            }
+
+            @Override
+            public void onFailure(Call<Value> call, Throwable t) {
+
+            }
+        });
+    }
+
 }
