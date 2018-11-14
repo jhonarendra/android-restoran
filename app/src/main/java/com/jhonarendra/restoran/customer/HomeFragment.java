@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -44,6 +45,8 @@ public class HomeFragment extends Fragment {
 
     RecyclerView recyclerView, rvBurger, rvSalad, rvMinuman, rvDessert, rvBreakfast;
 
+    CardView cvGetBurger, cvGetSalad, cvGetMinuman, cvGetDessert, cvGetBreakfast;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -54,6 +57,12 @@ public class HomeFragment extends Fragment {
         llMinuman = view.findViewById(R.id.ll_minuman);
         llDessert = view.findViewById(R.id.ll_dessert);
         llBreakfast = view.findViewById(R.id.ll_breakfast);
+
+        cvGetBurger = view.findViewById(R.id.cv_get_all_burger);
+        cvGetSalad = view.findViewById(R.id.cv_get_all_salad);
+        cvGetMinuman = view.findViewById(R.id.cv_get_all_minuman);
+        cvGetDessert = view.findViewById(R.id.cv_get_all_dessert);
+        cvGetBreakfast = view.findViewById(R.id.cv_get_all_breakfast);
 
         llBurger.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,6 +105,46 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        cvGetBurger.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent burger = new Intent(getActivity(),MenuBurgerActivity.class);
+                burger.putExtra("kategori_hidangan", "Burger");
+                startActivity(burger);
+            }
+        });
+        cvGetSalad.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent salad = new Intent(getActivity(),MenuBurgerActivity.class);
+                salad.putExtra("kategori_hidangan", "Salad");
+                startActivity(salad);
+            }
+        });
+        cvGetMinuman.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent minuman = new Intent(getActivity(),MenuBurgerActivity.class);
+                minuman.putExtra("kategori_hidangan", "Minuman");
+                startActivity(minuman);
+            }
+        });
+        cvGetDessert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent dessert = new Intent(getActivity(),MenuBurgerActivity.class);
+                dessert.putExtra("kategori_hidangan", "Dessert");
+                startActivity(dessert);
+            }
+        });
+        cvGetBreakfast.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent breakfast = new Intent(getActivity(),MenuBurgerActivity.class);
+                breakfast.putExtra("kategori_hidangan", "Breakfast");
+                startActivity(breakfast);
+            }
+        });
 
         recyclerView = view.findViewById(R.id.rv_all_menu);
         rvBurger = view.findViewById(R.id.rv_burger_menu);

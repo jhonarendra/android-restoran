@@ -173,6 +173,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <android.support.v7.widget.CardView
+                    android:id="@+id/cv_get_all_burger"
                     xmlns:android="http://schemas.android.com/apk/res/android"
                     xmlns:card_view="http://schemas.android.com/apk/res-auto"
                     android:layout_width="wrap_content"
@@ -230,6 +231,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <android.support.v7.widget.CardView
+                    android:id="@+id/cv_get_all_salad"
                     xmlns:android="http://schemas.android.com/apk/res/android"
                     xmlns:card_view="http://schemas.android.com/apk/res-auto"
                     android:layout_width="wrap_content"
@@ -287,6 +289,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <android.support.v7.widget.CardView
+                    android:id="@+id/cv_get_all_minuman"
                     xmlns:android="http://schemas.android.com/apk/res/android"
                     xmlns:card_view="http://schemas.android.com/apk/res-auto"
                     android:layout_width="wrap_content"
@@ -344,6 +347,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <android.support.v7.widget.CardView
+                    android:id="@+id/cv_get_all_dessert"
                     xmlns:android="http://schemas.android.com/apk/res/android"
                     xmlns:card_view="http://schemas.android.com/apk/res-auto"
                     android:layout_width="wrap_content"
@@ -401,6 +405,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <android.support.v7.widget.CardView
+                    android:id="@+id/cv_get_all_breakfast"
                     xmlns:android="http://schemas.android.com/apk/res/android"
                     xmlns:card_view="http://schemas.android.com/apk/res-auto"
                     android:layout_width="wrap_content"

@@ -7,12 +7,10 @@
 3. Biarkan sync gradle pake internet
 
 ## Screenshot
-![](https://raw.githubusercontent.com/jhonarendra/android-restoran/master/screenshot/img1.png)
 ![](https://raw.githubusercontent.com/jhonarendra/android-restoran/master/screenshot/img2.png)
-![](https://raw.githubusercontent.com/jhonarendra/android-restoran/master/screenshot/img3.png)
 ![](https://raw.githubusercontent.com/jhonarendra/android-restoran/master/screenshot/img4.png)
-![](https://raw.githubusercontent.com/jhonarendra/android-restoran/master/screenshot/img5.png)
-![](https://raw.githubusercontent.com/jhonarendra/android-restoran/master/screenshot/img6.png)
+![](https://raw.githubusercontent.com/jhonarendra/android-restoran/master/screenshot/img7.png)
+![](https://raw.githubusercontent.com/jhonarendra/android-restoran/master/screenshot/img8.png)
 
 ## Progmob 15
 |Nim	    |Nama				|
