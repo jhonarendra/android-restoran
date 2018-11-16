@@ -36,7 +36,7 @@ public class UserFragment extends Fragment{
         llLoggedIn = view.findViewById(R.id.ll_logged_in);
 
         if (login.equals("true")){
-            String nama = sharedPreferences.getString("nama", "");
+            String nama = sharedPreferences.getString("nama", "")+" "+sharedPreferences.getString("id","");
             tvUser.setText(nama);
             llNotLogin.setVisibility(View.GONE);
         } else {

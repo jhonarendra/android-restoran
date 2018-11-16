@@ -14,8 +14,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.jhonarendra.restoran.customer.api.Pelanggan;
 import com.jhonarendra.restoran.customer.api.RegisterAPI;
+import com.jhonarendra.restoran.customer.api.Result;
 import com.jhonarendra.restoran.customer.api.Value;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -32,6 +37,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 //    public static String LOGIN_STATUS="false";
 
     SharedPreferences sharedPreferences;
+    private List<Pelanggan> pelangganList = new ArrayList<>();
+    Pelanggan pelanggan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,9 +78,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         Boolean success = response.body().getSuccess();
                         if (success){
                             Toast.makeText(LoginActivity.this, "Login Berhasil", Toast.LENGTH_SHORT).show();
+                            pelangganList = response.body().getPelanggan();
+
+                            pelanggan = pelangganList.get(0);
                             sharedPreferences.edit()
                                     .putString("login","true")
-                                    .putString("nama",inputUsername)
+                                    .putString("nama",pelanggan.getNama_pelanggan())
+                                    .putString("id",pelanggan.getId_pelanggan())
                                     .apply();
 
                             Intent intent=new Intent(getApplicationContext(),Main2Activity.class);

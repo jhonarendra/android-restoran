@@ -49,4 +49,9 @@ public interface RegisterAPI {
                          @Field("email_pelanggan") String email_pelanggan,
                          @Field("username_pelanggan") String username_pelanggan,
                       @Field("password_pelanggan") String password_pelanggan);
+
+    @FormUrlEncoded
+    @POST("komentar")
+    Call<Value> komentar(@Field("id_pelanggan") String id_pelanggan,
+                         @Field("isi_komentar") String isi_komentar);
 }
