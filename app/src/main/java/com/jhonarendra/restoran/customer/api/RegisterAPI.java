@@ -8,6 +8,8 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
+import retrofit2.http.Url;
 
 public interface RegisterAPI {
     @GET("hidangan")//    @GET("select.php")
@@ -50,8 +52,11 @@ public interface RegisterAPI {
                          @Field("username_pelanggan") String username_pelanggan,
                       @Field("password_pelanggan") String password_pelanggan);
 
+    @GET("komentar/{id}")
+    Call<Value> komentarPelanggan(@Path("id") String id);
+
     @FormUrlEncoded
     @POST("komentar")
-    Call<Value> komentar(@Field("id_pelanggan") String id_pelanggan,
+    Call<Value> kirimKomentar(@Field("id_pelanggan") String id_pelanggan,
                          @Field("isi_komentar") String isi_komentar);
 }

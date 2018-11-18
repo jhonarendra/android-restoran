@@ -18,7 +18,7 @@
             android:layout_width="100dp"
             android:padding="10dp"
             android:layout_height="100dp"
-            android:src="@drawable/burger_cheese_burger"/>
+            android:src="@drawable/kategori_burger"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

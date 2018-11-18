@@ -6,11 +6,17 @@
 2. Masukkan url `https://github.com/jhonarendra/android-restoran.git`
 3. Biarkan sync gradle pake internet
 
+## Jalankan Aplikasi
+Buka api dari android restoran di https://github.com/jhonarendra/api-android-restoran (ikuti instruksi disana)
+Atau pakai api online bisa http://jonarendra.000webhostapp.com/api/progmob15/ (tapi mungkin agak lambat di update)
+
+
 ## Screenshot
 ![](https://raw.githubusercontent.com/jhonarendra/android-restoran/master/screenshot/img2.png)
 ![](https://raw.githubusercontent.com/jhonarendra/android-restoran/master/screenshot/img4.png)
 ![](https://raw.githubusercontent.com/jhonarendra/android-restoran/master/screenshot/img7.png)
 ![](https://raw.githubusercontent.com/jhonarendra/android-restoran/master/screenshot/img8.png)
+![](https://raw.githubusercontent.com/jhonarendra/android-restoran/master/screenshot/img9.png)
 
 ## Progmob 15
 |Nim	    |Nama				|

@@ -48,7 +48,7 @@
                 android:layout_margin="10dp"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
-                android:src="@drawable/burger_cheese_burger"/>
+                android:src="@drawable/kategori_burger"/>
             <TextView
                 android:id="@+id/tv_det_harga_hidangan"
                 android:layout_width="wrap_content"

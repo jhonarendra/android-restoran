@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 public class Main2Activity extends AppCompatActivity {
     public static final String URL = "http://192.168.43.102:8000/";
+//    public static final String URL = "http://jonarendra.000webhostapp.com/api/progmob15/";
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {

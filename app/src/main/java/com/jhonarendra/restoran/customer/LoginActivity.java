@@ -83,8 +83,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             pelanggan = pelangganList.get(0);
                             sharedPreferences.edit()
                                     .putString("login","true")
-                                    .putString("nama",pelanggan.getNama_pelanggan())
                                     .putString("id",pelanggan.getId_pelanggan())
+                                    .putString("nama",pelanggan.getNama_pelanggan())
+                                    .putString("email",pelanggan.getEmail_pelanggan())
+                                    .putString("username",pelanggan.getUsername_pelanggan())
+                                    .putString("password",pelanggan.getPassword_pelanggan())
                                     .apply();
 
                             Intent intent=new Intent(getApplicationContext(),Main2Activity.class);

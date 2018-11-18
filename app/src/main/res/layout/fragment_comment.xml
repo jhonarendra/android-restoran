@@ -6,29 +6,67 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/ll_comment_not_login"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_obj"
+            android:layout_height="500dp"
             android:orientation="vertical"
-            android:padding="20dp">
-            <EditText
-                android:id="@+id/et_isi_komentar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="14dp"
-                android:textColor="@color/colorPrimary"
-                android:hint="Kritik dan Saran"/>
+            android:gravity="center_vertical">
             <TextView
-                android:id="@+id/tv_kirim_komentar"
                 android:layout_width="match_parent"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimary"
+                android:layout_height="wrap_content"
+                android:text="Anda belum login. Silahkan login terlebih dahulu."/>
+            <TextView
+                android:layout_gravity="center"
+                android:id="@+id/tv_login"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
-                android:text="Kirim"
-                android:textColor="@android:color/white"
-                android:layout_margin="10dp"
                 android:paddingTop="5dp"
                 android:paddingBottom="5dp"
-                android:background="@drawable/bg_btn"/>
+                android:paddingLeft="40dp"
+                android:paddingRight="40dp"
+                android:layout_marginTop="20dp"
+                android:textColor="@android:color/white"
+                android:background="@drawable/bg_btn"
+                android:text="LOGIN"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/ll_comment_logged_in"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_obj"
+                android:orientation="vertical"
+                android:padding="20dp">
+                <EditText
+                    android:id="@+id/et_isi_komentar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="14dp"
+                    android:textColor="@color/colorPrimary"
+                    android:hint="Kritik dan Saran"/>
+                <TextView
+                    android:id="@+id/tv_kirim_komentar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:text="Kirim"
+                    android:textColor="@android:color/white"
+                    android:layout_margin="10dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:background="@drawable/bg_btn"/>
+            </LinearLayout>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_komentar_pelanggan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
         </LinearLayout>
     </RelativeLayout>
 </ScrollView>
