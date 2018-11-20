@@ -34,6 +34,8 @@ public class MenuBurgerActivity extends AppCompatActivity {
     private List<Result> results = new ArrayList<>();
     private RVMhs viewAdapter;
 
+    private DatabaseHelper db;
+
     @BindView(R.id.rv_mhs)
     RecyclerView recyclerView;
     @Override
@@ -58,6 +60,8 @@ public class MenuBurgerActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String kategoriHidangan = intent.getExtras().getString("kategori_hidangan");
 
+        db = new DatabaseHelper(this);
+
 
 
 
@@ -80,12 +84,12 @@ public class MenuBurgerActivity extends AppCompatActivity {
 
     }
 
-    private void loadMenuKategori(String kategoriHidangan) {
+    private void loadMenuKategori(final String kategoriHidangan) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Main2Activity.URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        RegisterAPI api = retrofit.create(RegisterAPI.class);
+        final RegisterAPI api = retrofit.create(RegisterAPI.class);
 
         Call<Value> call = null;
         switch (kategoriHidangan){
@@ -115,7 +119,9 @@ public class MenuBurgerActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Value> call, Throwable t) {
-
+                results = db.getHidanganperKategori(kategoriHidangan);
+                viewAdapter = new RVMhs(MenuBurgerActivity.this, results);
+                recyclerView.setAdapter(viewAdapter);
             }
         });
     }

@@ -12,8 +12,11 @@ import retrofit2.http.Path;
 import retrofit2.http.Url;
 
 public interface RegisterAPI {
-    @GET("hidangan")//    @GET("select.php")
-    Call<Value> view();
+    @GET("hidangan/set/limit")
+    Call<Value> hidanganLimit();
+
+    @GET("hidangan/all")
+    Call<Value> hidangan();
 
     @GET("hidangan/kategori/Burger")
     Call<Value> burger();
