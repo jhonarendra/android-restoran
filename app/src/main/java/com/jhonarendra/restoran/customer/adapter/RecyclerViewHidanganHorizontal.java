@@ -1,4 +1,4 @@
-package com.jhonarendra.restoran.customer;
+package com.jhonarendra.restoran.customer.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,7 +11,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.jhonarendra.restoran.customer.api.Result;
+import com.jhonarendra.restoran.customer.R;
+import com.jhonarendra.restoran.customer.activity.DetailHidanganActivity;
+import com.jhonarendra.restoran.customer.activity.MainActivity;
+import com.jhonarendra.restoran.customer.model.Hidangan;
 
 import java.util.List;
 
@@ -22,18 +25,18 @@ import butterknife.BindView;
  * Created by Jhonarendra on 11/2/2018.
  */
 
-public class RVMhs extends RecyclerView.Adapter<RVMhs.ViewHolder> {
+public class RecyclerViewHidanganHorizontal extends RecyclerView.Adapter<RecyclerViewHidanganHorizontal.ViewHolder> {
     private Context context;
-    private List<Result> results;
+    private List<Hidangan> hidangans;
 
-    public RVMhs(Context context, List<Result> results) {
+    public RecyclerViewHidanganHorizontal(Context context, List<Hidangan> hidangans) {
         this.context = context;
-        this.results = results;
+        this.hidangans = hidangans;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_list_mhs, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_view_hidangan_horizontal, parent, false);
         ViewHolder holder = new ViewHolder(v);
 
         return holder;
@@ -41,23 +44,23 @@ public class RVMhs extends RecyclerView.Adapter<RVMhs.ViewHolder> {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        Result result = results.get(position);
-        holder.textViewNama.setText(result.getNama_hidangan());
-        holder.textViewHarga.setText(result.getHarga_hidangan());
+        Hidangan hidangan = hidangans.get(position);
+        holder.textViewNama.setText(hidangan.getNama_hidangan());
+        holder.textViewHarga.setText(hidangan.getHarga_hidangan());
 
         String address = "";
-        address = Main2Activity.URL+"upload/"+result.getFoto_hidangan();
+        address = MainActivity.URL+"upload/"+ hidangan.getFoto_hidangan();
         Glide.with(context).load(address).into(holder.ivFotoHidangan);
 
         holder.cvMenuKategori.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, DetailHidangan.class);
-                intent.putExtra("nama_hidangan", results.get(position).getNama_hidangan());
-                intent.putExtra("deskripsi_hidangan", results.get(position).getDeskripsi_hidangan());
-                intent.putExtra("kateogori_hidangan", results.get(position).getKategori_hidangan());
-                intent.putExtra("harga_hidangan", results.get(position).getHarga_hidangan());
-                intent.putExtra("foto_hidangan", results.get(position).getFoto_hidangan());
+                Intent intent = new Intent(context, DetailHidanganActivity.class);
+                intent.putExtra("nama_hidangan", hidangans.get(position).getNama_hidangan());
+                intent.putExtra("deskripsi_hidangan", hidangans.get(position).getDeskripsi_hidangan());
+                intent.putExtra("kateogori_hidangan", hidangans.get(position).getKategori_hidangan());
+                intent.putExtra("harga_hidangan", hidangans.get(position).getHarga_hidangan());
+                intent.putExtra("foto_hidangan", hidangans.get(position).getFoto_hidangan());
 
                 context.startActivity(intent);
             }
@@ -67,7 +70,7 @@ public class RVMhs extends RecyclerView.Adapter<RVMhs.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return results.size();
+        return hidangans.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

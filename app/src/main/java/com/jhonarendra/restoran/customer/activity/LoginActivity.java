@@ -1,4 +1,4 @@
-package com.jhonarendra.restoran.customer;
+package com.jhonarendra.restoran.customer.activity;
 
 /**
  * Created by Jhonarendra on 10/31/2018.
@@ -9,14 +9,13 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.jhonarendra.restoran.customer.api.Pelanggan;
+import com.jhonarendra.restoran.customer.R;
+import com.jhonarendra.restoran.customer.model.Pelanggan;
 import com.jhonarendra.restoran.customer.api.RegisterAPI;
-import com.jhonarendra.restoran.customer.api.Result;
 import com.jhonarendra.restoran.customer.api.Value;
 
 import java.util.ArrayList;
@@ -67,7 +66,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 String inputPassword = etPassword.getText().toString();
 
                 Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl(Main2Activity.URL)
+                        .baseUrl(MainActivity.URL)
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
                 RegisterAPI api = retrofit.create(RegisterAPI.class);
@@ -90,7 +89,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                     .putString("password",pelanggan.getPassword_pelanggan())
                                     .apply();
 
-                            Intent intent=new Intent(getApplicationContext(),Main2Activity.class);
+                            Intent intent=new Intent(getApplicationContext(),MainActivity.class);
                             startActivity(intent);
                             finish();
                         } else {

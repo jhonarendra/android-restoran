@@ -1,4 +1,4 @@
-package com.jhonarendra.restoran.customer;
+package com.jhonarendra.restoran.customer.storage;
 
 import android.content.Context;
 import android.content.SharedPreferences;

@@ -1,4 +1,4 @@
-package com.jhonarendra.restoran.customer.api;
+package com.jhonarendra.restoran.customer.model;
 
 import com.jhonarendra.restoran.customer.R;
 
@@ -8,7 +8,7 @@ import java.sql.Blob;
  * Created by Jhonarendra on 11/2/2018.
  */
 
-public class Result {
+public class Hidangan {
     public static final String TABLE_NAME = "hidangan";
 
     public static final String COLUMN_ID = "id_hidangan";
@@ -34,6 +34,7 @@ public class Result {
     String kategori_hidangan;
     String foto_hidangan;
     String harga_hidangan;
+    byte[] byte_foto_hidangan;
 
 
     public String getId_hidangan() {
@@ -82,5 +83,13 @@ public class Result {
 
     public void setDeskripsi_hidangan(String deskripsi_hidangan) {
         this.deskripsi_hidangan = deskripsi_hidangan;
+    }
+
+    public void setByte_foto_hidangan(byte[] byte_foto_hidangan) {
+        this.byte_foto_hidangan = byte_foto_hidangan;
+    }
+
+    public byte[] getByte_foto_hidangan() {
+        return byte_foto_hidangan;
     }
 }

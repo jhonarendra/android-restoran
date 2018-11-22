@@ -1,17 +1,16 @@
-package com.jhonarendra.restoran.customer;
+package com.jhonarendra.restoran.customer.activity;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.jhonarendra.restoran.customer.R;
 import com.jhonarendra.restoran.customer.api.RegisterAPI;
 import com.jhonarendra.restoran.customer.api.Value;
 
@@ -58,7 +57,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 final String inputPassword = etPasswordR.getText().toString();
             //manggil api
                 Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl(Main2Activity.URL)
+                        .baseUrl(MainActivity.URL)
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
                 RegisterAPI api = retrofit.create(RegisterAPI.class);
@@ -74,7 +73,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                                                  .putString("login","true")
                                                  .putString("nama",inputNama)
                                                  .apply();
-                                         Intent intent=new Intent(getApplicationContext(),Main2Activity.class);
+                                         Intent intent=new Intent(getApplicationContext(),MainActivity.class);
                                          startActivity(intent);
                                          finish();
                                      } else {

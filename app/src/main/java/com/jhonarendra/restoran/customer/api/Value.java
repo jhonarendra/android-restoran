@@ -1,6 +1,9 @@
 package com.jhonarendra.restoran.customer.api;
 
-import java.util.ArrayList;
+import com.jhonarendra.restoran.customer.model.Hidangan;
+import com.jhonarendra.restoran.customer.model.Komentar;
+import com.jhonarendra.restoran.customer.model.Pelanggan;
+
 import java.util.List;
 
 /**
@@ -9,7 +12,7 @@ import java.util.List;
 
 public class Value {
     Boolean success;
-    List<Result> result;
+    List<Hidangan> hidangan;
     List<Komentar> komentar;
 //    Pelanggan pelanggan;
     List<Pelanggan> pelanggan;
@@ -22,8 +25,8 @@ public class Value {
     public String getMessage() {
         return message;
     }
-    public List<Result> getResult() {
-        return result;
+    public List<Hidangan> getHidangan() {
+        return hidangan;
     }
     public List<Komentar> getKomentar(){
         return komentar;

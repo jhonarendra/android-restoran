@@ -8,7 +8,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MenuBurgerActivity"
+        tools:context=".activity.MenuPerKategoriActivity"
         android:orientation="vertical"
         android:gravity="center_horizontal"
         android:background="@android:color/white">

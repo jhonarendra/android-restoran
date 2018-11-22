@@ -9,39 +9,44 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
-import retrofit2.http.Url;
 
 public interface RegisterAPI {
     @GET("hidangan/set/limit")
     Call<Value> hidanganLimit();
 
-    @GET("hidangan/all")
+    @GET("hidangan")
     Call<Value> hidangan();
 
-    @GET("hidangan/kategori/Burger")
-    Call<Value> burger();
-    @GET("hidangan/kategori/Burger/limit")
-    Call<Value> burgerLimit();
+    @GET("hidangan/kategori/{kategori}")
+    Call<Value> hidanganKategori(@Path("kategori") String kategori);
 
-    @GET("hidangan/kategori/Salad")
-    Call<Value> salad();
-    @GET("hidangan/kategori/Salad/limit")
-    Call<Value> saladLimit();
+    @GET("hidangan/kategori/{kategori}/limit")
+    Call<Value> hidanganKategoriLimit(@Path("kategori") String kategori);
 
-    @GET("hidangan/kategori/Minuman")
-    Call<Value> minuman();
-    @GET("hidangan/kategori/Minuman/limit")
-    Call<Value> minumanLimit();
-
-    @GET("hidangan/kategori/Dessert")
-    Call<Value> dessert();
-    @GET("hidangan/kategori/Dessert/limit")
-    Call<Value> dessertLimit();
-
-    @GET("hidangan/kategori/Breakfast")
-    Call<Value> breakfast();
-    @GET("hidangan/kategori/Breakfast/limit")
-    Call<Value> breakfastLimit();
+//    @GET("hidangan/kategori/Burger")
+//    Call<Value> burger();
+//    @GET("hidangan/kategori/Burger/limit")
+//    Call<Value> burgerLimit();
+//
+//    @GET("hidangan/kategori/Salad")
+//    Call<Value> salad();
+//    @GET("hidangan/kategori/Salad/limit")
+//    Call<Value> saladLimit();
+//
+//    @GET("hidangan/kategori/Minuman")
+//    Call<Value> minuman();
+//    @GET("hidangan/kategori/Minuman/limit")
+//    Call<Value> minumanLimit();
+//
+//    @GET("hidangan/kategori/Dessert")
+//    Call<Value> dessert();
+//    @GET("hidangan/kategori/Dessert/limit")
+//    Call<Value> dessertLimit();
+//
+//    @GET("hidangan/kategori/Breakfast")
+//    Call<Value> breakfast();
+//    @GET("hidangan/kategori/Breakfast/limit")
+//    Call<Value> breakfastLimit();
 
     @FormUrlEncoded
     @POST("pelanggan/login")

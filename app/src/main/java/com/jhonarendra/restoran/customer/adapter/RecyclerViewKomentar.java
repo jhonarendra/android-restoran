@@ -1,26 +1,15 @@
-package com.jhonarendra.restoran.customer;
+package com.jhonarendra.restoran.customer.adapter;
 
 import android.content.Context;
-import android.content.Intent;
-import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.jhonarendra.restoran.customer.api.Komentar;
-import com.jhonarendra.restoran.customer.api.Result;
+import com.jhonarendra.restoran.customer.R;
+import com.jhonarendra.restoran.customer.model.Komentar;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.List;
 
 import butterknife.BindView;
@@ -41,7 +30,7 @@ public class RecyclerViewKomentar extends RecyclerView.Adapter<RecyclerViewKomen
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.rv_list_komentar, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_view_komentar, parent, false);
         ViewHolder holder = new ViewHolder(v);
 
         return holder;

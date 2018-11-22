@@ -1,4 +1,4 @@
-package com.jhonarendra.restoran.customer.api;
+package com.jhonarendra.restoran.customer.model;
 
 /**
  * Created by Jhonarendra on 11/15/2018.

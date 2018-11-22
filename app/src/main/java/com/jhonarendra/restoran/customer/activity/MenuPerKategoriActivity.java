@@ -1,18 +1,18 @@
-package com.jhonarendra.restoran.customer;
+package com.jhonarendra.restoran.customer.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.Toast;
 
+import com.jhonarendra.restoran.customer.R;
+import com.jhonarendra.restoran.customer.adapter.RecyclerViewHidanganHorizontal;
 import com.jhonarendra.restoran.customer.api.RegisterAPI;
-import com.jhonarendra.restoran.customer.api.Result;
+import com.jhonarendra.restoran.customer.model.Hidangan;
 import com.jhonarendra.restoran.customer.api.Value;
+import com.jhonarendra.restoran.customer.storage.DatabaseHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,10 +29,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by Jhonarendra on 11/7/2018.
  */
 
-public class MenuBurgerActivity extends AppCompatActivity {
+public class MenuPerKategoriActivity extends AppCompatActivity {
 
-    private List<Result> results = new ArrayList<>();
-    private RVMhs viewAdapter;
+    private List<Hidangan> hidangans = new ArrayList<>();
+    private RecyclerViewHidanganHorizontal viewAdapter;
 
     private DatabaseHelper db;
 
@@ -41,7 +41,7 @@ public class MenuBurgerActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu_burger);
+        setContentView(R.layout.activity_hidangan_per_kategori);
 
 
 	// recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
@@ -49,7 +49,7 @@ public class MenuBurgerActivity extends AppCompatActivity {
         // recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
 
         ButterKnife.bind(this);
-        viewAdapter = new RVMhs(this, results);
+        viewAdapter = new RecyclerViewHidanganHorizontal(this, hidangans);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -84,43 +84,43 @@ public class MenuBurgerActivity extends AppCompatActivity {
 
     }
 
-    private void loadMenuKategori(final String kategoriHidangan) {
+    private void loadMenuKategori(final String kategori) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Main2Activity.URL)
+                .baseUrl(MainActivity.URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         final RegisterAPI api = retrofit.create(RegisterAPI.class);
 
         Call<Value> call = null;
-        switch (kategoriHidangan){
+        switch (kategori){
             case "Burger":
-                call = api.burger();
+                call = api.hidanganKategoriLimit(kategori);
                 break;
             case "Salad":
-                call = api.salad();
+                call = api.hidanganKategoriLimit(kategori);
                 break;
             case "Minuman":
-                call = api.minuman();
+                call = api.hidanganKategoriLimit(kategori);
                 break;
             case "Dessert":
-                call = api.dessert();
+                call = api.hidanganKategoriLimit(kategori);
                 break;
             case "Breakfast":
-                call = api.breakfast();
+                call = api.hidanganKategoriLimit(kategori);
         }
 
         call.enqueue(new Callback<Value>() {
             @Override
             public void onResponse(Call<Value> call, Response<Value> response) {
-                results = response.body().getResult();
-                viewAdapter = new RVMhs(MenuBurgerActivity.this, results);
+                hidangans = response.body().getHidangan();
+                viewAdapter = new RecyclerViewHidanganHorizontal(MenuPerKategoriActivity.this, hidangans);
                 recyclerView.setAdapter(viewAdapter);
             }
 
             @Override
             public void onFailure(Call<Value> call, Throwable t) {
-                results = db.getHidanganperKategori(kategoriHidangan);
-                viewAdapter = new RVMhs(MenuBurgerActivity.this, results);
+                hidangans = db.getHidanganperKategori(kategori);
+                viewAdapter = new RecyclerViewHidanganHorizontal(MenuPerKategoriActivity.this, hidangans);
                 recyclerView.setAdapter(viewAdapter);
             }
         });

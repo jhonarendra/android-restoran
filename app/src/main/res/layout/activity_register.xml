@@ -8,7 +8,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".RegisterActivity"
+        tools:context=".activity.RegisterActivity"
         android:orientation="vertical"
         android:padding="40dp"
         android:background="@drawable/warna">

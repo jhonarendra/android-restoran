@@ -1,4 +1,4 @@
-package com.jhonarendra.restoran.customer;
+package com.jhonarendra.restoran.customer.fragment;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -16,9 +16,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.jhonarendra.restoran.customer.api.Komentar;
+import com.jhonarendra.restoran.customer.activity.MainActivity;
+import com.jhonarendra.restoran.customer.storage.PreferencesHelper;
+import com.jhonarendra.restoran.customer.R;
+import com.jhonarendra.restoran.customer.adapter.RecyclerViewKomentar;
+import com.jhonarendra.restoran.customer.model.Komentar;
 import com.jhonarendra.restoran.customer.api.RegisterAPI;
-import com.jhonarendra.restoran.customer.api.Result;
 import com.jhonarendra.restoran.customer.api.Value;
 
 import java.util.ArrayList;
@@ -93,7 +96,7 @@ public class CommentFragment extends Fragment {
 
     private void kirimKomentar(String isiKomentar, String idPelanggan) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Main2Activity.URL)
+                .baseUrl(MainActivity.URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         RegisterAPI api = retrofit.create(RegisterAPI.class);
@@ -117,10 +120,10 @@ public class CommentFragment extends Fragment {
     }
 
     private void loadDataKomentar(String idPelanggan) {
-        String url = Main2Activity.URL+"komentar/"+idPelanggan;
+        String url = MainActivity.URL+"komentar/"+idPelanggan;
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Main2Activity.URL)
+                .baseUrl(MainActivity.URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         RegisterAPI api = retrofit.create(RegisterAPI.class);

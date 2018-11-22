@@ -1,4 +1,4 @@
-package com.jhonarendra.restoran.customer;
+package com.jhonarendra.restoran.customer.fragment;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,6 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.jhonarendra.restoran.customer.activity.LoginActivity;
+import com.jhonarendra.restoran.customer.activity.MainActivity;
+import com.jhonarendra.restoran.customer.storage.PreferencesHelper;
+import com.jhonarendra.restoran.customer.R;
 
 /**
  * Created by Jhonarendra on 11/7/2018.
@@ -49,7 +54,7 @@ public class UserFragment extends Fragment{
                 sharedPreferences.edit()
                         .clear()
                         .apply();
-                Intent intent = new Intent(getActivity(), Main2Activity.class);
+                Intent intent = new Intent(getActivity(), MainActivity.class);
                 startActivity(intent);
                 getActivity().finish();
             }
