@@ -1,9 +1,12 @@
 package com.jhonarendra.restoran.customer.fragment;
 
+import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
@@ -21,7 +24,10 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.GlideBuilder;
 import com.bumptech.glide.annotation.GlideOption;
 import com.bumptech.glide.load.model.GlideUrl;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.jhonarendra.restoran.customer.activity.RegisterActivity;
+import com.jhonarendra.restoran.customer.activity.TesByte;
 import com.jhonarendra.restoran.customer.adapter.RecyclerViewHidangan;
 import com.jhonarendra.restoran.customer.activity.MenuPerKategoriActivity;
 import com.jhonarendra.restoran.customer.model.Hidangan;
@@ -32,8 +38,12 @@ import com.jhonarendra.restoran.customer.api.RegisterAPI;
 import com.jhonarendra.restoran.customer.api.Value;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -128,7 +138,7 @@ public class HomeFragment extends Fragment {
         int jmlHidangan = db.getHidanganCount();
         Toast.makeText(getActivity(), "jumlah hidangan "+jmlHidangan, Toast.LENGTH_SHORT).show();
 
-        if(jmlHidangan==0){
+        if(jmlHidangan==0){ // Kalo di sqlite gak ada data, berarti dia baru nginstal, jadi pindahin data database ke sqlite
             loadSemuaHidanganKeSQLite();
         }
 
@@ -143,14 +153,6 @@ public class HomeFragment extends Fragment {
         loadHidanganPerKategori(kategori);
         kategori = "Breakfast";
         loadHidanganPerKategori(kategori);
-
-
-
-//        loadDataBurger();
-//        loadDataSalad();
-//        loadDataMinuman();
-//        loadDataDessert();
-//        loadDataBreakfast();
 
 
         /**
@@ -252,7 +254,6 @@ public class HomeFragment extends Fragment {
         });
 
         return view;
-
     }
 
     private void loadSemuaHidanganKeSQLite(){
@@ -266,15 +267,17 @@ public class HomeFragment extends Fragment {
             @Override
             public void onResponse(Call<Value> call, Response<Value> response) {
                 allHidanganList = response.body().getHidangan();
-                for (int i=0;i<allHidanganList.size();i++){;
+                for (int i=0;i<allHidanganList.size();i++){
+//                    String imgURL = MainActivity.URL + "upload/" + allHidanganList.get(i).getFoto_hidangan();
+//                    Glide.with(getActivity()).load(imgURL).into(ivTempSQLite);
                     db.insertHidangan(
                             allHidanganList.get(i).getNama_hidangan(),
                             allHidanganList.get(i).getDeskripsi_hidangan(),
                             allHidanganList.get(i).getKategori_hidangan(),
                             allHidanganList.get(i).getHarga_hidangan(),
-                            getByteFoto(allHidanganList.get(i).getFoto_hidangan())
+                            allHidanganList.get(i).getFoto_hidangan()
                     );
-                }
+               }
             }
 
             @Override
@@ -282,18 +285,6 @@ public class HomeFragment extends Fragment {
                 Toast.makeText(getActivity(), "Tidak ada jaringan", Toast.LENGTH_SHORT).show();
             }
         });
-    }
-
-    private byte[] getByteFoto(String foto) {
-        String imgURL = "";
-        imgURL = MainActivity.URL+"upload/"+ foto;
-        Glide.with(new HomeFragment()).load(imgURL);
-
-//        Bitmap bitmap = ((BitmapDrawable)ivTempSQLite.getDrawable()).getBitmap();
-//        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-//        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-//        byte[] byteArray = stream.toByteArray();
-        return byteArray;
     }
 
     private void loadDataMenu() {
@@ -313,7 +304,7 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onFailure(Call<Value> call, Throwable t) {
-                hidanganList = db.getAllHidangan();
+                hidanganList = db.getHidanganLimit();
                 hidanganAdapter = new RecyclerViewHidangan(getActivity(), hidanganList);
                 rvHidangan.setAdapter(hidanganAdapter);
             }
@@ -419,163 +410,4 @@ public class HomeFragment extends Fragment {
                 break;
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//    private void loadDataBurger() {
-//        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl(MainActivity.URL)
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build();
-//        RegisterAPI api = retrofit.create(RegisterAPI.class);
-//
-//        Call<Value> call = api.burgerLimit();
-//        call.enqueue(new Callback<Value>() {
-//            @Override
-//            public void onResponse(Call<Value> call, Response<Value> response) {
-//                resultsBurger = response.body().getHidangan();
-//                menuBurgerAdapter = new RecyclerViewHidangan(getActivity(), resultsBurger);
-//                rvBurger.setAdapter(menuBurgerAdapter);
-//            }
-//
-//            @Override
-//            public void onFailure(Call<Value> call, Throwable t) {
-//                String kategori = "Burger";
-//                resultsBurger = db.getHidanganperKategori(kategori);
-//                menuBurgerAdapter = new RecyclerViewHidangan(getActivity(), resultsBurger);
-//                rvBurger.setAdapter(menuBurgerAdapter);
-//            }
-//        });
-//    }
-//
-//    private void loadDataBreakfast() {
-//        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl(MainActivity.URL)
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build();
-//        RegisterAPI api = retrofit.create(RegisterAPI.class);
-//
-//        Call<Value> call = api.breakfastLimit();
-//        call.enqueue(new Callback<Value>() {
-//            @Override
-//            public void onResponse(Call<Value> call, Response<Value> response) {
-//                resultsBreakfast = response.body().getHidangan();
-//                menuBreakfastAdapter = new RecyclerViewHidangan(getActivity(), resultsBreakfast);
-//                rvBreakfast.setAdapter(menuBreakfastAdapter);
-//            }
-//
-//            @Override
-//            public void onFailure(Call<Value> call, Throwable t) {
-////                String kategori = "Breakfast";
-////                resultsBreakfast = db.getHidanganperKategori(kategori);
-////                menuBreakfastAdapter = new RecyclerViewHidangan(getActivity(), resultsBreakfast);
-////                rvBreakfast.setAdapter(menuBreakfastAdapter);
-//            }
-//        });
-//    }
-//
-//    private void loadDataDessert() {
-//        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl(MainActivity.URL)
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build();
-//        RegisterAPI api = retrofit.create(RegisterAPI.class);
-//
-//        Call<Value> call = api.dessertLimit();
-//        call.enqueue(new Callback<Value>() {
-//            @Override
-//            public void onResponse(Call<Value> call, Response<Value> response) {
-//                resultsDessert = response.body().getHidangan();
-//                menuDessertAdapter = new RecyclerViewHidangan(getActivity(), resultsDessert);
-//                rvDessert.setAdapter(menuDessertAdapter);
-//            }
-//
-//            @Override
-//            public void onFailure(Call<Value> call, Throwable t) {
-////                String kategori = "Dessert";
-////                resultsDessert = db.getHidanganperKategori(kategori);
-////                menuDessertAdapter = new RecyclerViewHidangan(getActivity(), resultsDessert);
-////                rvDessert.setAdapter(menuDessertAdapter);
-//            }
-//        });
-//    }
-//
-//    private void loadDataMinuman() {
-//        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl(MainActivity.URL)
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build();
-//        RegisterAPI api = retrofit.create(RegisterAPI.class);
-//
-//        Call<Value> call = api.minumanLimit();
-//        call.enqueue(new Callback<Value>() {
-//            @Override
-//            public void onResponse(Call<Value> call, Response<Value> response) {
-//                resultsMinuman = response.body().getHidangan();
-//                menuMinumanAdapter = new RecyclerViewHidangan(getActivity(), resultsMinuman);
-//                rvMinuman.setAdapter(menuMinumanAdapter);
-//            }
-//
-//            @Override
-//            public void onFailure(Call<Value> call, Throwable t) {
-////                String kategori = "Minuman";
-////                resultsMinuman = db.getHidanganperKategori(kategori);
-////                menuMinumanAdapter = new RecyclerViewHidangan(getActivity(), resultsMinuman);
-////                rvMinuman.setAdapter(menuMinumanAdapter);
-//            }
-//        });
-//    }
-//
-//    private void loadDataSalad() {
-//        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl(MainActivity.URL)
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build();
-//        RegisterAPI api = retrofit.create(RegisterAPI.class);
-//
-//        Call<Value> call = api.saladLimit();
-//        call.enqueue(new Callback<Value>() {
-//            @Override
-//            public void onResponse(Call<Value> call, Response<Value> response) {
-//                resultsSalad = response.body().getHidangan();
-//                menuSaladAdapter = new RecyclerViewHidangan(getActivity(), resultsSalad);
-//                rvSalad.setAdapter(menuSaladAdapter);
-//            }
-//
-//            @Override
-//            public void onFailure(Call<Value> call, Throwable t) {
-////                String kategori = "Salad";
-////                resultsSalad = db.getHidanganperKategori(kategori);
-////                menuSaladAdapter = new RecyclerViewHidangan(getActivity(), resultsSalad);
-////                rvSalad.setAdapter(menuSaladAdapter);
-//            }
-//        });
-//    }
-
 }

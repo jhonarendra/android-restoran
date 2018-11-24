@@ -11,6 +11,8 @@
             android:layout_width="match_parent"
             android:layout_height="500dp"
             android:orientation="vertical"
+            android:padding="20dp"
+            android:background="@android:color/white"
             android:gravity="center_vertical">
             <TextView
                 android:layout_width="match_parent"

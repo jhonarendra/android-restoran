@@ -24,7 +24,7 @@ public class Hidangan {
             + COLUMN_NAMA + " TEXT, "
             + COLUMN_DESKRIPSI + " TEXT, "
             + COLUMN_KATEGORI + " TEXT, "
-            + COLUMN_FOTO + " BLOB, "
+            + COLUMN_FOTO + " TEXT, "
             + COLUMN_HARGA + " TEXT"
         + ")";
 
@@ -34,7 +34,6 @@ public class Hidangan {
     String kategori_hidangan;
     String foto_hidangan;
     String harga_hidangan;
-    byte[] byte_foto_hidangan;
 
 
     public String getId_hidangan() {
@@ -83,13 +82,5 @@ public class Hidangan {
 
     public void setDeskripsi_hidangan(String deskripsi_hidangan) {
         this.deskripsi_hidangan = deskripsi_hidangan;
-    }
-
-    public void setByte_foto_hidangan(byte[] byte_foto_hidangan) {
-        this.byte_foto_hidangan = byte_foto_hidangan;
-    }
-
-    public byte[] getByte_foto_hidangan() {
-        return byte_foto_hidangan;
     }
 }

@@ -2,12 +2,21 @@ package com.jhonarendra.restoran.customer.storage;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.widget.ImageView;
 
 import com.jhonarendra.restoran.customer.model.Hidangan;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
  
@@ -29,25 +38,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + Hidangan.TABLE_NAME);
         onCreate(db);
     }
-
-// public void insertData(String name, String price, byte[] image){
-    //
-    // pas nginsert:
-    // sqLiteHelper.insertData(
-    //     edtName.getText().toString().trim(),
-    //     edtPrice.getText().toString().trim(),
-    //     imageViewToByte(imageView)
-    // );
-
-
-
-//    Bitmap bitmap = ((BitmapDrawable)image.getDrawable()).getBitmap();
-//    ByteArrayOutputStream stream = new ByteArrayOutputStream();
-//        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-//    byte[] byteArray = stream.toByteArray();
-//        return byteArray;
-
-     public long insertHidangan(String nama, String deskripsi, String kategori, String harga, byte[] foto) {
+     public long insertHidangan(String nama, String deskripsi, String kategori, String harga, String foto) {
          SQLiteDatabase db = this.getWritableDatabase();
     
          ContentValues values = new ContentValues();
@@ -65,19 +56,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
      public List<Hidangan> getHidanganperKategori(String kategori){
          List<Hidangan> hidanganList = new ArrayList<>();
-//         String queryPerKategori = "SELECT  * FROM " + Hidangan.TABLE_NAME + " WHERE " + Hidangan.COLUMN_KATEGORI + " = " + kategori;
-//         Cursor cursor = db.rawQuery(queryPerKategori, null);
-
          SQLiteDatabase db = this.getWritableDatabase();
-
-//         Cursor cursor = db.query(Hidangan.TABLE_NAME, new String[]{Hidangan.COLUMN_ID}, Hidangan.COLUMN_KATEGORI, new String[]{kategori}, null, null, null);
-
          Cursor cursor = db.query(Hidangan.TABLE_NAME,
                  new String[]{Hidangan.COLUMN_ID, Hidangan.COLUMN_NAMA, Hidangan.COLUMN_DESKRIPSI, Hidangan.COLUMN_HARGA, Hidangan.COLUMN_KATEGORI},
                  Hidangan.COLUMN_KATEGORI + "=?",
                  new String[]{kategori}, null, null, null, null);
-
-         // looping through all rows and adding to list
          if (cursor.moveToFirst()) {
              do {
                  Hidangan hidangan = new Hidangan();
@@ -88,48 +71,37 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                  hidanganList.add(hidangan);
              } while (cursor.moveToNext());
          }
-
-         // close db connection
          db.close();
-
-         // return notes list
          return hidanganList;
      }
 
+    public List<Hidangan> getAllHidangan() {
+        List<Hidangan> hidanganList = new ArrayList<>();
+        String selectQuery = "SELECT  * FROM " + Hidangan.TABLE_NAME ;
 
-// ini cara nge get
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                Hidangan hidangan = new Hidangan();
+                hidangan.setNama_hidangan(cursor.getString(cursor.getColumnIndex(Hidangan.COLUMN_NAMA)));
+                hidangan.setDeskripsi_hidangan(cursor.getString(cursor.getColumnIndex(Hidangan.COLUMN_DESKRIPSI)));
+                hidangan.setHarga_hidangan(cursor.getString(cursor.getColumnIndex(Hidangan.COLUMN_HARGA)));
+                hidangan.setKategori_hidangan(cursor.getString(cursor.getColumnIndex(Hidangan.COLUMN_KATEGORI)));
+                hidangan.setFoto_hidangan(cursor.getString(cursor.getColumnIndex(Hidangan.COLUMN_FOTO)));
+                hidanganList.add(hidangan);
+            } while (cursor.moveToNext());
+        }
+        db.close();
+        return hidanganList;
+    }
 
-// get all data from sqlite
-        // Cursor cursor = MainActivity.sqLiteHelper.getData("SELECT * FROM FOOD");
-        // list.clear();
-        // while (cursor.moveToNext()) {
-        //     int id = cursor.getInt(0);
-        //     String name = cursor.getString(1);
-        //     String price = cursor.getString(2);
-        //     byte[] image = cursor.getBlob(3);
-
-        //     list.add(new Food(name, price, image, id));
-        // }
-
-
-// ini cara nampilin
-
-
-
-     public List<Hidangan> getAllHidangan() {
+     public List<Hidangan> getHidanganLimit() {
          List<Hidangan> hidanganList = new ArrayList<>();
-    
-         // Select All Query
          String selectQuery = "SELECT  * FROM " + Hidangan.TABLE_NAME ;
     
          SQLiteDatabase db = this.getWritableDatabase();
          Cursor cursor = db.rawQuery(selectQuery, null);
-//         Cursor cursor = db.query(Hidangan.TABLE_NAME,
-//                 new String[]{Hidangan.COLUMN_ID, Hidangan.COLUMN_NAMA, Hidangan.COLUMN_DESKRIPSI, Hidangan.COLUMN_HARGA, Hidangan.COLUMN_KATEGORI},
-//                 null,
-//                 new String[]{null}, null, null, null, String.valueOf(5));
-    
-         // looping through all rows and adding to list
          if (cursor.moveToFirst()) {
              int i = 0;
              do {
@@ -138,16 +110,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                  hidangan.setDeskripsi_hidangan(cursor.getString(cursor.getColumnIndex(Hidangan.COLUMN_DESKRIPSI)));
                  hidangan.setHarga_hidangan(cursor.getString(cursor.getColumnIndex(Hidangan.COLUMN_HARGA)));
                  hidangan.setKategori_hidangan(cursor.getString(cursor.getColumnIndex(Hidangan.COLUMN_KATEGORI)));
-                 hidangan.setByte_foto_hidangan(cursor.getBlob(cursor.getColumnIndex(Hidangan.COLUMN_FOTO)));
+                 hidangan.setFoto_hidangan(cursor.getString(cursor.getColumnIndex(Hidangan.COLUMN_FOTO)));
                  hidanganList.add(hidangan);
                  i++;
              } while (cursor.moveToNext() && i<5);
          }
-    
-         // close db connection
          db.close();
-    
-         // return notes list
          return hidanganList;
      }
     
@@ -158,7 +126,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
          SQLiteDatabase db = this.getWritableDatabase();
          Cursor cursor = db.rawQuery(countQuery, null);
 
-         // looping through all rows and adding to list
          if (cursor.moveToFirst()) {
              do {
                  Hidangan hidangan = new Hidangan();
@@ -169,16 +136,63 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                  hidanganList.add(hidangan);
              } while (cursor.moveToNext());
          }
-
-         // close db connection
          db.close();
          cursor.close();
-    
          int count = hidanganList.size();
-
-         // return count
          return count;
      }
+
+    public String saveToInternalStorage(Context context, Bitmap bitmapImage, String foto){
+        ContextWrapper cw = new ContextWrapper(context);
+        // path to /data/data/com.jhonarendra.restoran.customer/app_Hidangan
+        File directory = cw.getDir("Hidangan", Context.MODE_PRIVATE);
+        File mypath=new File(directory,foto);
+
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream(mypath);
+            // Use the compress method on the BitMap object to write image to the OutputStream
+            bitmapImage.compress(Bitmap.CompressFormat.PNG, 100, fos);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                fos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return directory.getAbsolutePath();
+    }
+
+
+
+
+
+
+//    private Bitmap loadImageFromStorage(ImageView imageView, String path, String nama) {
+//        Bitmap b = null;
+//         try {
+//            File f=new File(path, nama);
+//            //nama = es_krim.png
+//            b = BitmapFactory.decodeStream(new FileInputStream(f));
+//            imageView.setImageBitmap(b);
+//        }
+//        catch (FileNotFoundException e)
+//        {
+//            e.printStackTrace();
+//        }
+//        return b;
+//
+//    }
+
+
+
+
+
+
+
+
 
     // public Note getNote(long id) {
     //     // get readable database as we are not inserting anything

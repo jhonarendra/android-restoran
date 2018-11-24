@@ -2,6 +2,8 @@ package com.jhonarendra.restoran.customer.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,6 +18,9 @@ import com.jhonarendra.restoran.customer.activity.DetailHidanganActivity;
 import com.jhonarendra.restoran.customer.activity.MainActivity;
 import com.jhonarendra.restoran.customer.model.Hidangan;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.List;
 
 import butterknife.ButterKnife;

@@ -2,6 +2,8 @@ package com.jhonarendra.restoran.customer.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +18,9 @@ import com.jhonarendra.restoran.customer.activity.DetailHidanganActivity;
 import com.jhonarendra.restoran.customer.activity.MainActivity;
 import com.jhonarendra.restoran.customer.model.Hidangan;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.List;
 
 import butterknife.BindView;
@@ -48,14 +53,19 @@ public class RecyclerViewHidangan extends RecyclerView.Adapter<RecyclerViewHidan
         holder.textViewNama.setText(hidangan.getNama_hidangan());
         holder.textViewHarga.setText(hidangan.getHarga_hidangan());
 
-        if(hidangan.getFoto_hidangan()==null){
-            byte[] byte_foto_hidangan = hidangan.getByte_foto_hidangan();
-            Glide.with(context).load(byte_foto_hidangan).into(holder.ivFotoHidangan);
-        } else {
+//        try {
+//            File f=new File("/data/data/com.jhonarendra.restoran.customer/app_Hidangan", hidangans.get(position).getFoto_hidangan());
+//            Bitmap b = BitmapFactory.decodeStream(new FileInputStream(f));
+//            holder.ivFotoHidangan.setImageBitmap(b);
+//        }
+//        catch (FileNotFoundException e)
+//        {
+//            e.printStackTrace();
             String address = "";
             address = MainActivity.URL+"upload/"+ hidangan.getFoto_hidangan();
             Glide.with(context).load(address).into(holder.ivFotoHidangan);
-        }
+//        }
+
 
 //        byte[] foodImage = food.getImage();
 //        Bitmap bitmap = BitmapFactory.decodeByteArray(foodImage, 0, foodImage.length);
@@ -71,7 +81,6 @@ public class RecyclerViewHidangan extends RecyclerView.Adapter<RecyclerViewHidan
                 intent.putExtra("kateogori_hidangan", hidangans.get(position).getKategori_hidangan());
                 intent.putExtra("harga_hidangan", hidangans.get(position).getHarga_hidangan());
                 intent.putExtra("foto_hidangan", hidangans.get(position).getFoto_hidangan());
-                intent.putExtra("byte_foto_hidangan", hidangans.get(position).getByte_foto_hidangan());
 
                 context.startActivity(intent);
             }

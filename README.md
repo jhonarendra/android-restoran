@@ -12,11 +12,9 @@ Atau pakai api online bisa http://jonarendra.000webhostapp.com/api/progmob15/ (t
 
 
 ## Screenshot
+![](https://raw.githubusercontent.com/jhonarendra/android-restoran/master/screenshot/img1.png)
 ![](https://raw.githubusercontent.com/jhonarendra/android-restoran/master/screenshot/img2.png)
-![](https://raw.githubusercontent.com/jhonarendra/android-restoran/master/screenshot/img4.png)
-![](https://raw.githubusercontent.com/jhonarendra/android-restoran/master/screenshot/img7.png)
-![](https://raw.githubusercontent.com/jhonarendra/android-restoran/master/screenshot/img8.png)
-![](https://raw.githubusercontent.com/jhonarendra/android-restoran/master/screenshot/img9.png)
+![](https://raw.githubusercontent.com/jhonarendra/android-restoran/master/screenshot/img3.png)
 
 ## Progmob 15
 |Nim	    |Nama				|

@@ -3,9 +3,13 @@ package com.jhonarendra.restoran.customer.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.jhonarendra.restoran.customer.R;
 import com.jhonarendra.restoran.customer.adapter.RecyclerViewHidanganHorizontal;
@@ -34,7 +38,12 @@ public class MenuPerKategoriActivity extends AppCompatActivity {
     private List<Hidangan> hidangans = new ArrayList<>();
     private RecyclerViewHidanganHorizontal viewAdapter;
 
+    TextView tvNamaKategori;
+    ImageView ivIconKategori, ivBackHome;
+
+
     private DatabaseHelper db;
+
 
     @BindView(R.id.rv_mhs)
     RecyclerView recyclerView;
@@ -43,6 +52,9 @@ public class MenuPerKategoriActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hidangan_per_kategori);
 
+        tvNamaKategori = findViewById(R.id.tv_nama_kategori);
+        ivIconKategori = findViewById(R.id.iv_icon_kategori);
+        ivBackHome = findViewById(R.id.iv_back_home);
 
 	// recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
         // recyclerView.setNestedScrollingEnabled(false);
@@ -61,6 +73,14 @@ public class MenuPerKategoriActivity extends AppCompatActivity {
         String kategoriHidangan = intent.getExtras().getString("kategori_hidangan");
 
         db = new DatabaseHelper(this);
+
+
+        ivBackHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
 
 
@@ -95,18 +115,28 @@ public class MenuPerKategoriActivity extends AppCompatActivity {
         switch (kategori){
             case "Burger":
                 call = api.hidanganKategoriLimit(kategori);
+                tvNamaKategori.setText(kategori);
+                ivIconKategori.setImageResource(R.drawable.kategori_burger);
                 break;
             case "Salad":
                 call = api.hidanganKategoriLimit(kategori);
+                tvNamaKategori.setText(kategori);
+                ivIconKategori.setImageResource(R.drawable.kategori_salad);
                 break;
             case "Minuman":
                 call = api.hidanganKategoriLimit(kategori);
+                tvNamaKategori.setText(kategori);
+                ivIconKategori.setImageResource(R.drawable.kategori_minuman);
                 break;
             case "Dessert":
                 call = api.hidanganKategoriLimit(kategori);
+                tvNamaKategori.setText(kategori);
+                ivIconKategori.setImageResource(R.drawable.kategori_dessert);
                 break;
             case "Breakfast":
                 call = api.hidanganKategoriLimit(kategori);
+                tvNamaKategori.setText(kategori);
+                ivIconKategori.setImageResource(R.drawable.kategori_breakfast);
         }
 
         call.enqueue(new Callback<Value>() {
