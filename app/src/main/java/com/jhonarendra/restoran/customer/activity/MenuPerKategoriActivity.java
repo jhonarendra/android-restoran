@@ -1,5 +1,6 @@
 package com.jhonarendra.restoran.customer.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.jhonarendra.restoran.customer.R;
@@ -43,6 +45,7 @@ public class MenuPerKategoriActivity extends AppCompatActivity {
 
 
     private DatabaseHelper db;
+    RelativeLayout rlNavBar;
 
 
     @BindView(R.id.rv_mhs)
@@ -55,10 +58,7 @@ public class MenuPerKategoriActivity extends AppCompatActivity {
         tvNamaKategori = findViewById(R.id.tv_nama_kategori);
         ivIconKategori = findViewById(R.id.iv_icon_kategori);
         ivBackHome = findViewById(R.id.iv_back_home);
-
-	// recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
-        // recyclerView.setNestedScrollingEnabled(false);
-        // recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        rlNavBar = findViewById(R.id.rl_navbar);
 
         ButterKnife.bind(this);
         viewAdapter = new RecyclerViewHidanganHorizontal(this, hidangans);
@@ -67,14 +67,10 @@ public class MenuPerKategoriActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(viewAdapter);
 
-//        Intent intent = getIntent();
-//        tvDetNamaHidangan.setText(intent.getExtras().getString("nama_hidangan"));
         Intent intent = getIntent();
         String kategoriHidangan = intent.getExtras().getString("kategori_hidangan");
 
         db = new DatabaseHelper(this);
-
-
         ivBackHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,26 +78,7 @@ public class MenuPerKategoriActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-//	bangunDatarList.add(new BangunDatarItem(
-              //  "Trapesium",
-              //  "Trapesium adalah bangun datar yang memiliki sepasang sisi sejajar dan sisi lainnya menghubungkan sisi sejajar.",
-             //   R.drawable.trapesium,
-            //    R.drawable.white_trapesium,
-             //   "s1 + s2 + a + b",
-             //   "{(a + b) x t} / 2",
-           //     R.drawable.rumus_trapesium
-        // ));
-
-//	adapter = new BangunDatarAdapter(this, bangunDatarList);
-//        recyclerView.setAdapter(adapter);
-
         loadMenuKategori(kategoriHidangan);
-
-
-
     }
 
     private void loadMenuKategori(final String kategori) {
@@ -117,26 +94,31 @@ public class MenuPerKategoriActivity extends AppCompatActivity {
                 call = api.hidanganKategoriLimit(kategori);
                 tvNamaKategori.setText(kategori);
                 ivIconKategori.setImageResource(R.drawable.kategori_burger);
+                rlNavBar.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
                 break;
             case "Salad":
                 call = api.hidanganKategoriLimit(kategori);
                 tvNamaKategori.setText(kategori);
                 ivIconKategori.setImageResource(R.drawable.kategori_salad);
+                rlNavBar.setBackgroundColor(getResources().getColor(R.color.colorGreen));
                 break;
             case "Minuman":
                 call = api.hidanganKategoriLimit(kategori);
                 tvNamaKategori.setText(kategori);
                 ivIconKategori.setImageResource(R.drawable.kategori_minuman);
+                rlNavBar.setBackgroundColor(getResources().getColor(R.color.colorBlue));
                 break;
             case "Dessert":
                 call = api.hidanganKategoriLimit(kategori);
                 tvNamaKategori.setText(kategori);
                 ivIconKategori.setImageResource(R.drawable.kategori_dessert);
+                rlNavBar.setBackgroundColor(getResources().getColor(R.color.colorPurple));
                 break;
             case "Breakfast":
                 call = api.hidanganKategoriLimit(kategori);
                 tvNamaKategori.setText(kategori);
                 ivIconKategori.setImageResource(R.drawable.kategori_breakfast);
+                rlNavBar.setBackgroundColor(getResources().getColor(R.color.colorRed));
         }
 
         call.enqueue(new Callback<Value>() {

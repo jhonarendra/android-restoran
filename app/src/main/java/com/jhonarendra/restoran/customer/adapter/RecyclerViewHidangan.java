@@ -52,26 +52,9 @@ public class RecyclerViewHidangan extends RecyclerView.Adapter<RecyclerViewHidan
         Hidangan hidangan = hidangans.get(position);
         holder.textViewNama.setText(hidangan.getNama_hidangan());
         holder.textViewHarga.setText(hidangan.getHarga_hidangan());
-
-//        try {
-//            File f=new File("/data/data/com.jhonarendra.restoran.customer/app_Hidangan", hidangans.get(position).getFoto_hidangan());
-//            Bitmap b = BitmapFactory.decodeStream(new FileInputStream(f));
-//            holder.ivFotoHidangan.setImageBitmap(b);
-//        }
-//        catch (FileNotFoundException e)
-//        {
-//            e.printStackTrace();
-            String address = "";
-            address = MainActivity.URL+"upload/"+ hidangan.getFoto_hidangan();
-            Glide.with(context).load(address).into(holder.ivFotoHidangan);
-//        }
-
-
-//        byte[] foodImage = food.getImage();
-//        Bitmap bitmap = BitmapFactory.decodeByteArray(foodImage, 0, foodImage.length);
-//        holder.imageView.setImageBitmap(bitmap);
-
-
+        String address = "";
+        address = MainActivity.URL+"upload/"+ hidangan.getFoto_hidangan();
+        Glide.with(context).load(address).into(holder.ivFotoHidangan);
         holder.llAllMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

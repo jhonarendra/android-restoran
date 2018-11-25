@@ -37,7 +37,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/colorPrimaryDark"
                     android:textSize="12dp"
                     android:text="Burger"/>
             </LinearLayout>
@@ -54,7 +54,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/colorGreen"
                     android:textSize="12dp"
                     android:text="Salad"/>
             </LinearLayout>
@@ -71,7 +71,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/colorBlue"
                     android:textSize="12dp"
                     android:text="Minuman"/>
             </LinearLayout>
@@ -88,7 +88,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/colorPurple"
                     android:textSize="12dp"
                     android:text="Dessert"/>
             </LinearLayout>
@@ -105,7 +105,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/colorRed"
                     android:textSize="12dp"
                     android:text="Breakfast"/>
             </LinearLayout>
@@ -162,7 +162,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Burger"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/colorPrimaryDark"
                     android:textStyle="bold"/>
             </LinearLayout>
             <HorizontalScrollView
@@ -220,7 +220,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Salad"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/colorGreen"
                     android:textStyle="bold"/>
             </LinearLayout>
             <HorizontalScrollView
@@ -278,7 +278,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Minuman"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/colorBlue"
                     android:textStyle="bold"/>
             </LinearLayout>
             <HorizontalScrollView
@@ -336,7 +336,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Dessert"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/colorPurple"
                     android:textStyle="bold"/>
             </LinearLayout>
             <HorizontalScrollView
@@ -394,7 +394,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Breakfast"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/colorRed"
                     android:textStyle="bold"/>
             </LinearLayout>
             <HorizontalScrollView
@@ -444,11 +444,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="100dp">
-                <ImageView
-                    android:id="@+id/iv_temp_sqlite"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp" />
+                android:padding="50dp">
             </RelativeLayout>
 
         </LinearLayout>

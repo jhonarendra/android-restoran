@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jhonarendra.restoran.customer.activity.MainActivity;
+import com.jhonarendra.restoran.customer.storage.DatabaseHelper;
 import com.jhonarendra.restoran.customer.storage.PreferencesHelper;
 import com.jhonarendra.restoran.customer.R;
 import com.jhonarendra.restoran.customer.adapter.RecyclerViewKomentar;
@@ -44,8 +45,10 @@ public class CommentFragment extends Fragment {
     RecyclerView rvKomentar;
     SharedPreferences sharedPreferences;
     PreferencesHelper preferencesHelper;
+    DatabaseHelper db;
 
     private List<Komentar> komentarList = new ArrayList<>();
+    private List<Komentar> allKomentarList = new ArrayList<>();
     RecyclerViewKomentar rvKomentarAdapter;
     @Nullable
     @Override
@@ -54,6 +57,8 @@ public class CommentFragment extends Fragment {
 
         preferencesHelper = new PreferencesHelper(getActivity());
         sharedPreferences = this.getActivity().getSharedPreferences("user", Context.MODE_PRIVATE);
+
+        db = new DatabaseHelper(getActivity());
 
         llCommentLoggedIn = view.findViewById(R.id.ll_comment_logged_in);
         llCommentNotLogin = view.findViewById(R.id.ll_comment_not_login);
@@ -83,6 +88,9 @@ public class CommentFragment extends Fragment {
                     kirimKomentar(isiKomentar, idPelanggan);
                 }
             });
+            if (db.getKomentarCount()==0){
+                loadKomentarKeSQLite(idPelanggan);
+            }
             loadDataKomentar(idPelanggan);
         } else {
             llCommentNotLogin.setVisibility(View.VISIBLE);
@@ -92,6 +100,34 @@ public class CommentFragment extends Fragment {
         return view;
 
 
+    }
+
+    private void loadKomentarKeSQLite(String idPelanggan) {
+        String url = MainActivity.URL+"komentar/"+idPelanggan;
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(MainActivity.URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        RegisterAPI api = retrofit.create(RegisterAPI.class);
+
+        Call<Value> call = api.komentarPelanggan(idPelanggan);
+        call.enqueue(new Callback<Value>() {
+            @Override
+            public void onResponse(Call<Value> call, Response<Value> response) {
+                allKomentarList = response.body().getKomentar();
+                for (int i=0;i<allKomentarList.size();i++){
+                    db.insertKomentar(
+                            allKomentarList.get(i).getIsi_komentar()
+                    );
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Value> call, Throwable t) {
+                Toast.makeText(getActivity(), "Tidak ada jaringan", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void kirimKomentar(String isiKomentar, String idPelanggan) {
@@ -139,7 +175,9 @@ public class CommentFragment extends Fragment {
 
             @Override
             public void onFailure(Call<Value> call, Throwable t) {
-
+                komentarList = db.getAllKomentar();
+                rvKomentarAdapter = new RecyclerViewKomentar(getActivity(), komentarList);
+                rvKomentar.setAdapter(rvKomentarAdapter);
             }
         });
     }

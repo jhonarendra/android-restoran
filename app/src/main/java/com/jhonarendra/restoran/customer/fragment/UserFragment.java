@@ -22,7 +22,7 @@ import com.jhonarendra.restoran.customer.R;
  */
 
 public class UserFragment extends Fragment{
-    protected TextView tvLogin, tvUser, tvLogout;
+    protected TextView tvLogin, tvUser, tvLogout, tvEmail, tvUsername;
     protected LinearLayout llNotLogin, llLoggedIn;
     SharedPreferences sharedPreferences;
     PreferencesHelper preferencesHelper;
@@ -37,15 +37,23 @@ public class UserFragment extends Fragment{
         String login = sharedPreferences.getString("login", "");
         tvUser = view.findViewById(R.id.tv_nama_user);
         tvLogout = view.findViewById(R.id.tv_logout);
+        tvEmail = view.findViewById(R.id.tv_email_user);
+        tvUsername = view.findViewById(R.id.tv_username_user);
         llNotLogin = view.findViewById(R.id.ll_not_login);
         llLoggedIn = view.findViewById(R.id.ll_logged_in);
 
         if (login.equals("true")){
-            String nama = sharedPreferences.getString("nama", "")+" "+sharedPreferences.getString("id","");
+            String nama = sharedPreferences.getString("nama", "");
+            String email = sharedPreferences.getString("email", "");
+            String username = sharedPreferences.getString("username", "");
             tvUser.setText(nama);
+            tvEmail.setText(email);
+            tvUsername.setText(username);
             llNotLogin.setVisibility(View.GONE);
+            llLoggedIn.setVisibility(View.VISIBLE);
         } else {
             llLoggedIn.setVisibility(View.GONE);
+            llNotLogin.setVisibility(View.VISIBLE);
         }
 
         tvLogout.setOnClickListener(new View.OnClickListener() {

@@ -11,6 +11,7 @@ import android.graphics.BitmapFactory;
 import android.widget.ImageView;
 
 import com.jhonarendra.restoran.customer.model.Hidangan;
+import com.jhonarendra.restoran.customer.model.Komentar;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -31,13 +32,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(Hidangan.CREATE_TABLE);
+        db.execSQL(Komentar.CREATE_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + Hidangan.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + Komentar.TABLE_NAME);
         onCreate(db);
     }
+
      public long insertHidangan(String nama, String deskripsi, String kategori, String harga, String foto) {
          SQLiteDatabase db = this.getWritableDatabase();
     
@@ -142,29 +146,54 @@ public class DatabaseHelper extends SQLiteOpenHelper {
          return count;
      }
 
-    public String saveToInternalStorage(Context context, Bitmap bitmapImage, String foto){
-        ContextWrapper cw = new ContextWrapper(context);
-        // path to /data/data/com.jhonarendra.restoran.customer/app_Hidangan
-        File directory = cw.getDir("Hidangan", Context.MODE_PRIVATE);
-        File mypath=new File(directory,foto);
+    public long insertKomentar(String komentar){
+        SQLiteDatabase db = this.getWritableDatabase();
 
-        FileOutputStream fos = null;
-        try {
-            fos = new FileOutputStream(mypath);
-            // Use the compress method on the BitMap object to write image to the OutputStream
-            bitmapImage.compress(Bitmap.CompressFormat.PNG, 100, fos);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                fos.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return directory.getAbsolutePath();
+        ContentValues values = new ContentValues();
+
+        values.put(Komentar.COLUMN_KOMENTAR, komentar);
+
+        long id = db.insert(Komentar.TABLE_NAME, null, values);
+        db.close();
+        return id;
     }
 
+    public List<Komentar> getAllKomentar(){
+        List<Komentar> komentarList = new ArrayList<>();
+        String selectQuery = "SELECT  * FROM " + Komentar.TABLE_NAME ;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                Komentar komentar = new Komentar();
+                komentar.setIsi_komentar(cursor.getString(cursor.getColumnIndex(Komentar.COLUMN_KOMENTAR)));
+                komentarList.add(komentar);
+            } while (cursor.moveToNext());
+        }
+        db.close();
+        return komentarList;
+    }
+
+    public int getKomentarCount() {
+        List<Komentar> komentarList = new ArrayList<>();
+        String countQuery = "SELECT  * FROM " + Komentar.TABLE_NAME;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(countQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                Komentar komentar = new Komentar();
+                komentar.setIsi_komentar(cursor.getString(cursor.getColumnIndex(Komentar.COLUMN_KOMENTAR)));
+                komentarList.add(komentar);
+            } while (cursor.moveToNext());
+        }
+        db.close();
+        cursor.close();
+        int count = komentarList.size();
+        return count;
+    }
 
 
 

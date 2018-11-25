@@ -71,8 +71,6 @@ public class HomeFragment extends Fragment {
 
     CardView cvGetBurger, cvGetSalad, cvGetMinuman, cvGetDessert, cvGetBreakfast;
 
-    ImageView ivTempSQLite;
-
     private DatabaseHelper db;
 
     @Nullable
@@ -268,8 +266,6 @@ public class HomeFragment extends Fragment {
             public void onResponse(Call<Value> call, Response<Value> response) {
                 allHidanganList = response.body().getHidangan();
                 for (int i=0;i<allHidanganList.size();i++){
-//                    String imgURL = MainActivity.URL + "upload/" + allHidanganList.get(i).getFoto_hidangan();
-//                    Glide.with(getActivity()).load(imgURL).into(ivTempSQLite);
                     db.insertHidangan(
                             allHidanganList.get(i).getNama_hidangan(),
                             allHidanganList.get(i).getDeskripsi_hidangan(),
@@ -277,7 +273,7 @@ public class HomeFragment extends Fragment {
                             allHidanganList.get(i).getHarga_hidangan(),
                             allHidanganList.get(i).getFoto_hidangan()
                     );
-               }
+                }
             }
 
             @Override
