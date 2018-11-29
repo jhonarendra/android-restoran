@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "63742941528",
+    "firebase_url": "https://progmob15.firebaseio.com",
+    "project_id": "progmob15",
+    "storage_bucket": "progmob15.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:63742941528:android:c78d287b2b8342b1",
+        "android_client_info": {
+          "package_name": "com.jhonarendra.restoran.customer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "63742941528-rh8io97cv6v76kt7qukb9vg8jtojccql.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDU3OvIBufFE4zz8I5oLC_quUNXBqggBvI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
