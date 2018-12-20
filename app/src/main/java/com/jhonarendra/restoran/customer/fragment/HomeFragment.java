@@ -134,7 +134,7 @@ public class HomeFragment extends Fragment {
         db = new DatabaseHelper(getActivity());
 
         int jmlHidangan = db.getHidanganCount();
-        Toast.makeText(getActivity(), "jumlah hidangan "+jmlHidangan, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getActivity(), "jumlah hidangan "+jmlHidangan, Toast.LENGTH_SHORT).show();
 
         if(jmlHidangan==0){ // Kalo di sqlite gak ada data, berarti dia baru nginstal, jadi pindahin data database ke sqlite
             loadSemuaHidanganKeSQLite();

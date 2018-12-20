@@ -35,7 +35,4 @@ public class Value {
     public List<Pelanggan> getPelanggan() {
         return pelanggan;
     }
-    //    public Pelanggan getPelanggan() {
-//        return pelanggan;
-//    }
 }

@@ -13,8 +13,7 @@ import com.jhonarendra.restoran.customer.fragment.HomeFragment;
 import com.jhonarendra.restoran.customer.fragment.UserFragment;
 
 public class MainActivity extends AppCompatActivity {
-    public static final String URL = "http://192.168.43.102:8000/";
-//    public static final String URL = "http://jonarendra.000webhostapp.com/api/progmob15/";
+    public static final String URL = "http://10.10.23.142:8000/";
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {

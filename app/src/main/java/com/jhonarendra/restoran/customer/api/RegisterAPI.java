@@ -4,6 +4,7 @@ package com.jhonarendra.restoran.customer.api;
  * Created by Jhonarendra on 11/2/2018.
  */
 import retrofit2.Call;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
@@ -23,31 +24,6 @@ public interface RegisterAPI {
     @GET("hidangan/kategori/{kategori}/limit")
     Call<Value> hidanganKategoriLimit(@Path("kategori") String kategori);
 
-//    @GET("hidangan/kategori/Burger")
-//    Call<Value> burger();
-//    @GET("hidangan/kategori/Burger/limit")
-//    Call<Value> burgerLimit();
-//
-//    @GET("hidangan/kategori/Salad")
-//    Call<Value> salad();
-//    @GET("hidangan/kategori/Salad/limit")
-//    Call<Value> saladLimit();
-//
-//    @GET("hidangan/kategori/Minuman")
-//    Call<Value> minuman();
-//    @GET("hidangan/kategori/Minuman/limit")
-//    Call<Value> minumanLimit();
-//
-//    @GET("hidangan/kategori/Dessert")
-//    Call<Value> dessert();
-//    @GET("hidangan/kategori/Dessert/limit")
-//    Call<Value> dessertLimit();
-//
-//    @GET("hidangan/kategori/Breakfast")
-//    Call<Value> breakfast();
-//    @GET("hidangan/kategori/Breakfast/limit")
-//    Call<Value> breakfastLimit();
-
     @FormUrlEncoded
     @POST("pelanggan/login")
     Call<Value> login(@Field("username_pelanggan") String username_pelanggan,
@@ -62,6 +38,9 @@ public interface RegisterAPI {
 
     @GET("komentar/{id}")
     Call<Value> komentarPelanggan(@Path("id") String id);
+
+    @DELETE("komentar/{id}")
+    Call<Value> deteleKomentarPelanggan(@Path("id") String id);
 
     @FormUrlEncoded
     @POST("komentar")
