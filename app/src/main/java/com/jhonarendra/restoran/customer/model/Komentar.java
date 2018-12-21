@@ -23,7 +23,7 @@ public class Komentar {
     String created_at;
     String isi_komentar;
 
-    public Komentar(String id_pelanggan, String isi_komentar){
+    public Komentar(String id_pelanggan, String isi_komentar, String created_at){
         this.id_pelanggan = id_pelanggan;
         this.isi_komentar = isi_komentar;
         this.created_at = created_at;

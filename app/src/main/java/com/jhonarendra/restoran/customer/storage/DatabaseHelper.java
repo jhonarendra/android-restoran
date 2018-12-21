@@ -146,16 +146,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
          return count;
      }
 
-    public long insertKomentar(String komentar){
+    public long insertKomentar(String id, String komentar, String tanggal) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
 
+        values.put(Komentar.COLUMN_ID, id);
         values.put(Komentar.COLUMN_KOMENTAR, komentar);
+        values.put(Komentar.COLUMN_TANGGAL_KOMENTAR, tanggal);
 
-        long id = db.insert(Komentar.TABLE_NAME, null, values);
+        long ids = db.insert(Komentar.TABLE_NAME, null, values);
         db.close();
-        return id;
+        return ids;
     }
 
     public List<Komentar> getAllKomentar(){

@@ -102,6 +102,8 @@ public class CommentFragment extends Fragment {
 
     }
 
+
+
     private void loadKomentarKeSQLite(String idPelanggan) {
         String url = MainActivity.URL+"komentar/"+idPelanggan;
 
@@ -118,7 +120,9 @@ public class CommentFragment extends Fragment {
                 allKomentarList = response.body().getKomentar();
                 for (int i=0;i<allKomentarList.size();i++){
                     db.insertKomentar(
-                            allKomentarList.get(i).getIsi_komentar()
+                            allKomentarList.get(i).getId_komentar(),
+                            allKomentarList.get(i).getIsi_komentar(),
+                            allKomentarList.get(i).getCreated_at()
                     );
                 }
             }

@@ -1,6 +1,7 @@
 package com.jhonarendra.restoran.customer.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,9 +10,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jhonarendra.restoran.customer.R;
+import com.jhonarendra.restoran.customer.activity.DetailHidanganActivity;
+import com.jhonarendra.restoran.customer.activity.DetailKomentarActivity;
 import com.jhonarendra.restoran.customer.activity.MainActivity;
 import com.jhonarendra.restoran.customer.api.RegisterAPI;
 import com.jhonarendra.restoran.customer.api.Value;
+import com.jhonarendra.restoran.customer.fragment.CommentFragment;
 import com.jhonarendra.restoran.customer.model.Komentar;
 
 import java.util.List;
@@ -53,30 +57,11 @@ public class RecyclerViewKomentar extends RecyclerView.Adapter<RecyclerViewKomen
         holder.tvHapusKomentar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                Toast.makeText(v.getContext(), "Menghapus id "+result.getId_komentar(), Toast.LENGTH_SHORT).show();
-                Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl(MainActivity.URL)
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build();
-                RegisterAPI api = retrofit.create(RegisterAPI.class);
-
-                Call<Value> call = api.deteleKomentarPelanggan(result.getId_komentar());
-                call.enqueue(new Callback<Value>() {
-                    @Override
-                    public void onResponse(Call<Value> call, Response<Value> response) {
-                        Boolean success = response.body().getSuccess();
-                        if(success){
-                            Toast.makeText(v.getContext(), "Berhasil", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(v.getContext(), "Gagal", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<Value> call, Throwable t) {
-                        Toast.makeText(v.getContext(), "Gagal", Toast.LENGTH_SHORT).show();
-                    }
-                });
+//                Toast.makeText(v.getContext(), "Menghapus id "+result.getId_komentar(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, DetailKomentarActivity.class);
+                intent.putExtra("aksi", "Hapus");
+                intent.putExtra("id_komentar", result.getId_komentar());
+                context.startActivity(intent);
             }
         });
     }
@@ -96,13 +81,6 @@ public class RecyclerViewKomentar extends RecyclerView.Adapter<RecyclerViewKomen
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                }
-            });
         }
     }
 }
