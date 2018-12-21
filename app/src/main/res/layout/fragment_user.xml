@@ -137,6 +137,19 @@
                 android:paddingLeft="40dp"
                 android:paddingRight="40dp"
                 android:background="@drawable/bg_btn"/>
+
+            <TextView
+                android:id="@+id/tv_edit_profil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edit Profil"
+                android:textColor="@android:color/white"
+                android:layout_margin="10dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:paddingLeft="40dp"
+                android:paddingRight="40dp"
+                android:background="@drawable/bg_btn"/>
         </LinearLayout>
     </RelativeLayout>
 </LinearLayout>

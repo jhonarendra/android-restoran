@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.jhonarendra.restoran.customer.activity.DetailProfilActivity;
 import com.jhonarendra.restoran.customer.activity.LoginActivity;
 import com.jhonarendra.restoran.customer.activity.MainActivity;
 import com.jhonarendra.restoran.customer.storage.PreferencesHelper;
@@ -22,7 +23,7 @@ import com.jhonarendra.restoran.customer.R;
  */
 
 public class UserFragment extends Fragment{
-    protected TextView tvLogin, tvUser, tvLogout, tvEmail, tvUsername;
+    protected TextView tvLogin, tvUser, tvLogout, tvEmail, tvUsername, tvEditProfil;
     protected LinearLayout llNotLogin, llLoggedIn;
     SharedPreferences sharedPreferences;
     PreferencesHelper preferencesHelper;
@@ -41,16 +42,36 @@ public class UserFragment extends Fragment{
         tvUsername = view.findViewById(R.id.tv_username_user);
         llNotLogin = view.findViewById(R.id.ll_not_login);
         llLoggedIn = view.findViewById(R.id.ll_logged_in);
+        tvEditProfil = view.findViewById(R.id.tv_edit_profil);
+
+        tvEditProfil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), DetailProfilActivity.class);
+                i.putExtra("nama_pelanggan", "Edit");
+            }
+        });
 
         if (login.equals("true")){
-            String nama = sharedPreferences.getString("nama", "");
-            String email = sharedPreferences.getString("email", "");
-            String username = sharedPreferences.getString("username", "");
+            final String nama = sharedPreferences.getString("nama", "");
+            final String email = sharedPreferences.getString("email", "");
+            final String username = sharedPreferences.getString("username", "");
             tvUser.setText(nama);
             tvEmail.setText(email);
             tvUsername.setText(username);
             llNotLogin.setVisibility(View.GONE);
             llLoggedIn.setVisibility(View.VISIBLE);
+            tvEditProfil.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(getActivity(), DetailProfilActivity.class);
+                    i.putExtra("nama_pelanggan", nama);
+                    i.putExtra("email_pelanggan", email);
+                    i.putExtra("username_pelanggan", username);
+//                    i.putExtra("password_pelanggan", password);
+                    startActivity(i);
+                }
+            });
         } else {
             llLoggedIn.setVisibility(View.GONE);
             llNotLogin.setVisibility(View.VISIBLE);

@@ -69,11 +69,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                                      if (success){
                                          Toast.makeText(RegisterActivity.this, "Akun " + inputNama + " berhasil dibuat!", Toast.LENGTH_SHORT).show();
 
-                                         sharedPreferences.edit()
-                                                 .putString("login","true")
-                                                 .putString("nama",inputNama)
-                                                 .apply();
-                                         Intent intent=new Intent(getApplicationContext(),MainActivity.class);
+                                         Intent intent=new Intent(getApplicationContext(),LoginActivity.class);
                                          startActivity(intent);
                                          finish();
                                      } else {

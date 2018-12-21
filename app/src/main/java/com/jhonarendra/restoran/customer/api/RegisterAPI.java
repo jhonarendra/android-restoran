@@ -9,6 +9,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 import retrofit2.http.GET;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface RegisterAPI {
@@ -36,11 +37,23 @@ public interface RegisterAPI {
                          @Field("username_pelanggan") String username_pelanggan,
                       @Field("password_pelanggan") String password_pelanggan);
 
+    @FormUrlEncoded
+    @PUT("pelanggan/{id}")
+    Call<Value> editPelanggan(@Path("id") String id,
+                              @Field("nama_pelanggan") String nama_pelanggan,
+                              @Field("email_pelanggan") String email_pelanggan,
+                              @Field("username_pelanggan") String username_pelanggan);
+
     @GET("komentar/{id}")
     Call<Value> komentarPelanggan(@Path("id") String id);
 
     @DELETE("komentar/{id}")
     Call<Value> deteleKomentarPelanggan(@Path("id") String id);
+
+    @FormUrlEncoded
+    @PUT("komentar/{id}")
+    Call<Value> editKomentarPelanggan(@Path("id") String id,
+                                      @Field("isi_komentar") String isi_komentar);
 
     @FormUrlEncoded
     @POST("komentar")
