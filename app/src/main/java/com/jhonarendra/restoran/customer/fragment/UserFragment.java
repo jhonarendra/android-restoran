@@ -15,15 +15,23 @@ import android.widget.TextView;
 import com.jhonarendra.restoran.customer.activity.DetailProfilActivity;
 import com.jhonarendra.restoran.customer.activity.LoginActivity;
 import com.jhonarendra.restoran.customer.activity.MainActivity;
+import com.jhonarendra.restoran.customer.api.RegisterAPI;
+import com.jhonarendra.restoran.customer.api.Value;
 import com.jhonarendra.restoran.customer.storage.PreferencesHelper;
 import com.jhonarendra.restoran.customer.R;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by Jhonarendra on 11/7/2018.
  */
 
 public class UserFragment extends Fragment{
-    protected TextView tvLogin, tvUser, tvLogout, tvEmail, tvUsername, tvEditProfil;
+    protected TextView tvLogin, tvUser, tvLogout, tvEmail, tvUsername, tvEditProfil, tvHapusProfil;
     protected LinearLayout llNotLogin, llLoggedIn;
     SharedPreferences sharedPreferences;
     PreferencesHelper preferencesHelper;
@@ -43,6 +51,7 @@ public class UserFragment extends Fragment{
         llNotLogin = view.findViewById(R.id.ll_not_login);
         llLoggedIn = view.findViewById(R.id.ll_logged_in);
         tvEditProfil = view.findViewById(R.id.tv_edit_profil);
+        tvHapusProfil = view.findViewById(R.id.tv_hapus_profil);
 
         tvEditProfil.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,6 +79,39 @@ public class UserFragment extends Fragment{
                     i.putExtra("username_pelanggan", username);
 //                    i.putExtra("password_pelanggan", password);
                     startActivity(i);
+                }
+            });
+            tvHapusProfil.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    final String id = sharedPreferences.getString("id", "");
+                    Retrofit retrofit = new Retrofit.Builder()
+                            .baseUrl(MainActivity.URL)
+                            .addConverterFactory(GsonConverterFactory.create())
+                            .build();
+                    RegisterAPI api = retrofit.create(RegisterAPI.class);
+                    Call<Value> call = api.hapusPelanggan(id);
+                    call.enqueue(new Callback<Value>() {
+                        @Override
+                        public void onResponse(Call<Value> call, Response<Value> response) {
+                            Boolean success = response.body().getSuccess();
+                            if (success){
+                                sharedPreferences.edit()
+                                        .clear()
+                                        .apply();
+                                Intent intent = new Intent(getActivity(), MainActivity.class);
+                                startActivity(intent);
+                                getActivity().finish();
+                            } else {
+
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<Value> call, Throwable t) {
+
+                        }
+                    });
                 }
             });
         } else {

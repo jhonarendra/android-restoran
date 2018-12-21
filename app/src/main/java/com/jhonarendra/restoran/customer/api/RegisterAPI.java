@@ -59,4 +59,11 @@ public interface RegisterAPI {
     @POST("komentar")
     Call<Value> kirimKomentar(@Field("id_pelanggan") String id_pelanggan,
                          @Field("isi_komentar") String isi_komentar);
+
+    @FormUrlEncoded
+    @POST("fcm")
+    Call<Value> registerToken(@Field("token") String token);
+
+    @DELETE("pelanggan/{id}")
+    Call<Value> hapusPelanggan(@Path("id") String id);
 }
